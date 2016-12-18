@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/pintuer.css">
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/admin.css">
+    <script src="__ADMINSTATIC__/js/jquery-1.11.3.js"></script>
+    <script src="__ADMINSTATIC__/js/jquery.js"></script>
+    <script src="__ADMINSTATIC__/js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 用户管理</strong>
+        &nbsp;&nbsp;共有<strong>{$count}</strong>名用户
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th width="120">ID</th>
+                <th>姓名</th>
+                <th>电话</th>
+                <th>积分</th>
+                <th>邮箱</th>
+                <th>其他</th>
+                <th width="25%">内容</th>
+                <th width="120">注册时间</th>
+                <th>操作</th>
+            </tr>
+            {foreach $list as $val}
+            <tr>
+                <td><input type="checkbox" name="id[]" value="{$val.id}"/>
+                    {$val.id}
+                </td>
+                <td>{$val.nickname}</td>
+                <td>{$val.phone_number}</td>
+                <td>{$val.coin}</td>
+                <td>{$val.email}</td>
+                <td>{$val.address}</td>
+                <td>{$val.personal}</td>
+                <td>{$val.register_time}</td>
+                <td>
+                    <div class="button-group">
+                    <a class="button border-red"  href="#" onclick="return del({$val.id})">
+                    <span class="icon-trash-o"></span> 删除</a>&nbsp;&nbsp;
+                    </div>
+                    {if session('name')['user_type'] === 0}
+                    <a class="button border-blue" href="#" onclick="return update('{$val.nickname}',{$val.id})">
+                    <span class="icon-wrench"></span>设为管理员</a>
+                    {/if}
+                </td>
+            </tr>
+            {/foreach}
+            <div class="padding border-bottom">
+                <ul class="search">
+                    <li>
+                        <button type="button" class="button border-green" id="checkall"><span class="icon-check"></span> 全选
+                        </button>
+                        <button type="submit" class="button border-red" onclick="DelSelect()"><span class="icon-trash-o"></span> 批量删除</button>
+                    </li>
+                </ul>
+            </div>
+            <tr>
+                <td colspan="8">
+                    <div class="pagelist">
+                        {$page}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script type="text/javascript">
+
+    function del(id) {
+        if (confirm("您确定要删除吗?")) {
+            $.post("__SITE__/admin/admin/delOne",
+                    {id:id},
+                    function(data){
+                        if (data.status == 1) {
+                            alert(data.msg);
+                            window.location.href = "__SITE__/admin/admin/user";
+                        } else {
+                            alert(data.msg);
+                        }
+                        
+                    },
+                    "json");
+        } else {
+            return false;        
+        }
+    }
+
+    function update(name,id) {
+        if (confirm('您确定要将'+name+'设置成管理员么?')) {
+            $.post("__SITE__/admin/admin/beAdmin",
+                    {id:id},
+                    function(data){
+                        if (data.status == 1) {
+                            alert(data.msg);
+                            window.location.href = "__SITE__/admin/admin/user";
+                        } else {
+                            alert(data.msg);
+                        }
+                    },
+                    "json");
+        } else {
+            return false;        
+        }
+    }
+
+    $("#checkall").click(function () {
+        $("input[name='id[]']").each(function () {
+            if (this.checked) {
+                this.checked = false;
+            }
+            else {
+                this.checked = true;
+            }
+        });
+    })
+
+    function DelSelect() {
+        var Checkbox = false;
+        var id = '';
+        $("input[name='id[]']").each(function () {
+            if (this.checked == true) {
+                id = id+this.value+',';
+                Checkbox = true;
+            } 
+        });
+        id=id.substring(id.length-1,',');
+        if (Checkbox) {
+            var t = confirm("您确认要删除选中的内容吗？");
+            if (t == false){
+                return false;
+            } else {
+                $.post("__SITE__/admin/admin/delMore",
+                        {id:id},
+                        function(data){},"json");
+            }
+            alert("删除成功!");
+            return false;
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords"
+          content="注册成为豆果美食会员，美食,菜谱,家常菜谱,美食菜谱,豆果美食菜谱,最新菜谱,美食分享,菜谱分享,减肥食谱,特色小吃,西餐美食,最全的菜谱网站,美食文化,豆果美食,douguo.com">
+    <meta name="description" content="豆果美食为第一华人美食菜谱社区，提供各种美食、菜谱、食谱的做法，丰富的菜谱大全可以让您轻松地学会怎么做美食，展现自己的高超厨艺，与千万会员一同分享美味的人生！">
+    <meta name="author" content="豆果美食 1603.bigcheng.com">
+    <meta name="google-site-verification" content="2gKQfz4b2duFoGhkAMtl9EsHRd0nJWda-SxknzWYAGA">
+    <meta name="y_key" content="e4b03bf435642365">
+    <meta property="wb:webmaster" content="5d3113ad6af60df9">
+    <meta name="varify-v1" content="baidu-z6YB9Um9kaoKXmFf">
+    <meta name="baidu-site-verification" content="f4bd7fa0f7e3712360b62873fcb22edd"/>
+    <meta name="apple-itunes-app" content="app-id=434212566"/>
+    <link href="__STATIC__/css/bootstrap.min.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+    <link href="__STATIC__/css/login_passport.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+    <title>登录 - 豆果美食</title>
+    <script type="text/javascript" src="__STATIC__/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__STATIC__/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="loheader">
+    <div class="htop">
+        <div class="hlogo"><a title="豆果美食" href="http://1603.bigcheng.com/">豆果美食</a></div>
+    </div>
+</div>
+<div id="main" class="clearfix">
+    <div class="bgsi">
+        <div class="shic" style="margin-top:78px"><img src="__STATIC__/picture/sinin.png"></div>
+    </div>
+    <div class="silo clearfix">
+        <div class="wizh">
+            <h2>登录</h2>
+            <span><a href="__SITE__/index/auth/register">去注册 ></a></span>
+        </div>
+        <div class="logone">
+            <div class="iput">
+                <input id="username" placeholder="请输入手机号" class="dlsi r5" type="text">
+            </div>
+            <span class="lowrong mll" id="err_username"><p id="u"></p></span>
+            <div class="iput">
+                <input id="password" placeholder="请输入密码" class="dlsi r5" maxlength="20" type="password">
+            </div>
+            <div id="captcha" class="tymm" style="display: none">
+                <input id="code" class="yzma r5" maxlength="4" type="text" placeholder="输入验证码">
+                <img class="czl mls mrs" width="100" height="30" id="codeimg"
+                     src="__STATIC__/picture/87be7c7494384843904bd2a74a6b0bb0.gif">
+                <a href="javascript:void(0);" id="chgcapt">换一张</a>
+            </div>
+            <input id="ajaxurl" type="hidden" value="http%3A%2F%2F1603.bigcheng.com%2Fmain%2Freturns">
+            <div class="forg"><a href="__SITE__/index/forget/forget">忘记密码 ></a><span id="err" class="twro"
+                                                                style="margin-left:20px;visibility: hidden"></span>
+            </div>
+            <div class="mtsu">
+                <button id="login" type="submit" class="btnrlo r3">登录</button>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="footer">
+    <div class="foot ptm">
+        <div class="clink relative">
+            <a href="http://1603.bigcheng.com/about.html" rel="nofollow" target="_blank">关于豆果</a> ·
+            <a href="http://1603.bigcheng.com/hr.html" rel="nofollow" target="_blank">在豆果工作</a> ·
+            <a href="http://1603.bigcheng.com/user/feedback" rel="nofollow" target="_blank">意见反馈</a> ·
+            <a href="http://1603.bigcheng.com/links.html" target="_blank">友情链接</a> ·
+            <a href="http://1603.bigcheng.com/allrecipes/" target="_blank">菜谱大全</a> ·
+            <a href="http://1603.bigcheng.com/brand" target="_blank">品牌馆</a>
+        </div>
+        <div class="cght">
+            ©2009-2015 <a href="http://1603.bigcheng.com" target="_blank">北京豆果信息技术有限公司</a> <a
+                href="http://www.miibeian.gov.cn" target="_blank" rel="nofollow">京ICP证111032号</a> 京公网安备11010102001133号
+            京网文[2014]0774-174号
+        </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript" >
+    $(function () {
+        $("#username").blur(function() {
+            $.post(
+                    'checkPhone',
+                    {
+                        username: $("#username").val()
+                    },
+                    function (data) {
+                        if (data.status) {
+                             $("#u").html('<font color="green">手机号码正确</font>');
+                        } else{
+                            $("#u").html('<font color="red">手机号码不存在，请注册</font>');
+                        }
+                    }, 'json'
+                );
+            
+        });
+
+        $("#login").click(function () {
+            $.post(
+                    'doLogin',
+                    {
+                        username: $("#username").val(),
+                        password: $("#password").val()
+                    },
+                    function ($data) {
+                        if ($data.status) {
+                           $(function () {
+                            $("#su").css({display:'block'});
+                                    setTimeout( function(){
+                                    location.href = '__SITE__/index/index/index';
+                                }, 1000);
+                                }) 
+                        }
+                    }, 'json'
+                );
+        });
+    });
+</script>
+<div id="su" class="sqcengw r5" style="width:300px;height:260px;display: none; position:absolute;top:50%;left:50%;margin-left:-150px;margin-top:-130px;font-size:40px;font-weight:bold;color:red;line-height:260px;text-align:center;background:url('__STATIC__/images/beijing.gif');border-radius:20px;">
+       登录成功！
+    </div>  
+      <div id="su" class="sqcengw r5" style="width:300px;height:260px;display: none; position:absolute;top:50%;left:50%;margin-left:-150px;margin-top:-130px;font-size:40px;font-weight:bold;color:red;line-height:260px;text-align:center;background:url('__STATIC__/images/beijing.gif');border-radius:20px;">
+       登录失败！
+    </div>
+</html>

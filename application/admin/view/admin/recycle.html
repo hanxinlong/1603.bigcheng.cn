@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/pintuer.css">
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/admin.css">
+    <script src="__ADMINSTATIC__/js/jquery-1.11.3.js"></script>
+    <script src="__ADMINSTATIC__/js/jquery.js"></script>
+    <script src="__ADMINSTATIC__/js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 小黑屋</strong>
+        &nbsp;&nbsp;共有<strong>{$delCount}</strong>道
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th width="120">ID</th>
+                <th>姓名</th>
+                <th>电话</th>
+                <th>积分</th>
+                <th>邮箱</th>
+                <th>其他</th>
+                <th width="25%">内容</th>
+                <th width="120">修改时间</th>
+                {if session('name')['user_type'] === 0}
+                <th>操作</th>
+                {/if}
+            </tr>
+            {foreach $delUser as $val}
+            <tr>
+                <td>
+                    {$val.id}
+                </td>
+                <td>{$val.nickname}</td>
+                <td>{$val.phone_number}</td>
+                <td>{$val.coin}</td>
+                <td>{$val.email}</td>
+                <td>{$val.address}</td>
+                <td>{$val.personal}</td>
+                <td>{$val.update_time}</td>
+                {if session('name')['user_type'] === 0}
+                <td>
+                    <div class="button-group">
+                    <a class="button border-red" href="#" onclick="return recover({$val.id})">
+                    <span class="icon-trash-o"></span> 恢复</a>
+                    </div>
+                </td>
+                {/if}
+            </tr>
+            {/foreach}
+            <tr>
+                <td colspan="8">
+                    <div class="pagelist">
+                    {$delPage}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script type="text/javascript">
+
+    function recover(id) {
+        if (confirm("您确定要恢复这个用户么?")) {
+            $.post("__SITE__/admin/admin/recover",
+                        {id:id},
+                         function(data){
+                            if (data.status == 1) {
+                                alert(data.msg);
+                            window.location.href = "__SITE__/admin/admin/recycle";
+                            } else {
+                                alert(data.msg);
+                            }
+                        },
+                        "json");
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

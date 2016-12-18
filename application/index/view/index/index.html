@@ -1,0 +1,114 @@
+﻿<div id="main" class="clearfix">
+    <div id="focusbox" style="width:940px;height:250px;overflow: hidden">
+        <div class="fivebox">
+            <div class="hd">
+                <a class="next"></a>
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+                <a class="prev"></a>
+            </div>
+            <div class="bd">
+                <ul class="piList" style="margin-left:120px;">
+               
+                 {foreach $pic as $p}
+                    <li>
+                        <a href="http://www.douguo.com/showadsid.php?id=4e8683a0df837c27e269a2ce27be31871ae9e4c54d55d1982372673849567c9bf11ef82ba1d4bff8b76466b156e25780a06c6f6d2b932b452682832a4a3c8bd9760edf7a2406fc5785380c49c48f987aa7cc4d3eafaadce09646047a8dbe586a6c911b09f974c62332f4854622d74b28"
+                           target="_blank" class="DGTrack">
+                            <img style="display:block;width:700px;height:220px;" src="{$p.adv_path}"
+                                 alt="{$p.adv_name}"></a>
+                    </li>
+                {/foreach}
+          
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="hot mb2">
+        <h1><a href="http://www.douguo.com/caipu" style="font-size:18px;">每日编辑推荐</a></h1>
+        <div class="recipes clearfix">
+    {foreach $courData as $valCour}
+            <div class="mrl fContainer mb25 left" id="{$valCour['id']}" style="height:267px;width:215px;">
+                <div class="cover">
+                    <p class="retu">
+                        <a target="_blank" href="__SITE__/index/cook/details/id/{$valCour['id']}">
+                            <img src="{$valCour['finish_map']}" alt="{$valCour['title']}" style="height:210px;width:230px;display:block;">
+                        </a>
+                    </p>
+                    <p class="bgtm">
+                        <span class="rename dblok"><a target="_blank" href="__SITE__/index/cook/details/id/{$valCour['id']}">{$valCour['title']}</a></span>
+                        <span class="na dblok">by <a href="__SITE__/index/user/person/id/{$valCour['id']}" class="user"  rel="nofollow">{$valCour['nickname']}</a></span>
+                    </p>
+                </div>
+            </div>
+    {/foreach}
+    </div>
+  <div class="hot mb2">
+<h2 class="gend_o"  style="font-size:18px;">购好货精选</h2>
+        <div class="yshcp clearfix">
+        {if !empty($showGoods)}
+            {foreach $showGoods as $goods}
+            <div class="ysktr">
+                <div class="yshimg">
+                    <a href="__SITE__/index/goods/buygoods/id/{$goods['id']}" target="_blank">
+                        <img alt="老陈秘制 羊蝎子火锅带汤 1600g "
+                             src="{$goods['goods_path']}">
+                    </a>
+                </div>
+                <div class="yshnr">
+                    <a href="__SITE__/index/goods/buygoods/id/{$goods['id']}" target="_blank" title="老陈秘制 羊蝎子火锅带汤 1600g ">
+                        <h3>{$goods['goods_name']}</h3>
+                    </a>
+                    <div class="jg">
+                        <span>¥{$goods['new_price']}</span>
+                        <del>¥{$goods['old_price']}</del>
+                    </div>
+                </div>
+                <div class="yshou">月售 {$goods['amount']} 盒</div>
+                <div class="baoy">包邮</div>
+            </div>
+            {/foreach}
+            {/if}
+        </div>
+
+</div>
+
+</div>
+<div class="newer clearfix" style="float:left;">
+    <div class="focont">
+        <div class="dgintro">
+            <div class="logo2"></div>
+            <div class="dgifo">
+                <h1>豆果美食，中文美食菜谱分享网站。</h1>
+                <p><span>850,000</span>道菜谱，<span>10,625,000</span>条美食日记，<span>7,500,000</span>美食达人，每天都有新分享。</p>
+            </div>
+            <div class="threbl">
+                <h3>扫二维码，下载豆果手机应用：</h3>
+                <ul>
+                    <li>
+                        <a href="http://www.douguo.com/page/appcenter" class="emwx"></a>加微信好友
+                    </li>
+                    <li>
+                        <a href="http://www.douguo.com/download/douguomeishi" class="emdgms"></a>豆果美食
+                    </li>
+                    <li>
+                        <a href="http://www.douguo.com/page/appcenter" class="emmsrj"></a>写食派
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cooperation litdm">
+            <h3 class="pt15">更多合作，更多精彩</h3>
+            <ul class="pt15 mts">
+            {foreach $link as $valink}
+                <li><a href="{$valink['url']}" class="{$valink['logo']}" target="_blank"></a><a href="{$valink['url']}" target="_blank">{$valink['name']}</a></li>
+            {/foreach}
+                
+            </ul>
+        </div>
+    </div>
+</div>

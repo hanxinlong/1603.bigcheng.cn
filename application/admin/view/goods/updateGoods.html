@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/pintuer.css">
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/css/admin.css">
+    <script src="__ADMINSTATIC__/js/jquery.js"></script>
+    <script src="__ADMINSTATIC__/js/pintuer.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span> 添加商品</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="__SITE__/admin/goods/doUpdate" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{$info.id}">
+            <div class="form-group">
+                <div class="label">
+                    <label>商品名全称：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.goods_name}" name="goods_name" data-validate="required:请输入标题"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>商品原价：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.old_price}"  style="width:25%; float:left;" name="old_price" data-validate="required:请输入商品原价"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>商品现价：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.new_price}"  style="width:25%; float:left;" name="new_price" data-validate="required:请输入商品现价"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>发货地：</label>
+                </div>
+                <div class="iput ptm">
+                    <input type="text" value="{$info.place}">
+                    <select name="place" pid="0" id="province">
+                        <option value="" selected="selected">未选择</option>
+                        <option>北京</option>
+                        <option>上海</option>
+                        <option>天津</option>
+                        <option>重庆</option>
+                        <option>广东</option>
+                        <option>福建</option>
+                        <option>浙江</option>
+                        <option>江苏</option>
+                        <option>山东</option>
+                        <option>辽宁</option>
+                        <option>江西</option>
+                        <option>四川</option>
+                        <option>陕西</option>
+                        <option>湖北</option>
+                        <option>河南</option>
+                        <option>河北</option>
+                        <option>山西</option>
+                        <option>内蒙古</option>
+                        <option>吉林</option>
+                        <option>黑龙江</option>
+                        <option>安徽</option>
+                        <option>湖南</option>
+                        <option>广西</option>
+                        <option>海南</option>
+                        <option>云南</option>
+                        <option>贵州</option>
+                        <option>西藏</option>
+                        <option>甘肃</option>
+                        <option>宁夏</option>
+                        <option>青海</option>
+                        <option>新疆</option>
+                        <option>香港</option>
+                        <option>澳门</option>
+                        <option>台湾</option>
+                        <option>海外</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>销售数量：</label>
+                </div>
+                <div class="field">
+                    {$info.amount}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>运费：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="{$info.freight}"  style="width:25%; float:left;" name="freight" data-validate="required:请输入商品价格"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="label">
+                    <label>商品描述：</label>
+                </div>
+                <div class="field">
+                    <textarea class="input" name="goods_des" style=" height:200px;">{$info.goods_des}</textarea>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>商品封面：</label>
+                </div>
+                <div class="field">
+                    <div name="content" class="input" style="width:35%; border:1px solid #ddd;">
+                    <img style="width:80px; height:80px;" src="{$cover.goods_path}" alt="">
+                    </div>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>商品图片：</label>
+                </div>
+                <div class="field">
+                    <div name="content" class="input" style="width:35%; border:1px solid #ddd;">
+                    {foreach $picInfo as $pic}
+                    <img style="width:80px; height:80px;" src="{$pic.goods_path}" alt="">
+                    <!-- <input type="file" id="{$pic.id}" name="goods[]" /> <br> -->
+                    {/foreach}
+                    </div>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>商品详情：</label>
+                </div>
+                <div class="field">
+                    <div name="content" class="input" style=" width:35%; border:1px solid #ddd;">
+                    {foreach $details as $det}
+                    <img style="width:80px; height:80px;" src="{$det.goods_path}" alt="">
+                    <!-- <input type="file" id="{$det.id}" name="details[]" /> <br> -->
+                    {/foreach}
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="form-group">
+                <div class="label">
+                    <label>客服电话：</label>
+                </div>
+                <div class="field" style="width:25%">
+                    <input type="text" class="input" name="tel" value="{$info.tel}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>购买须知：</label>
+                </div>
+                <div class="field">
+                    <textarea type="text" class="input" name="afterSell" style="height:200px;">{$info.afterSell}</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

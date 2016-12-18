@@ -1,0 +1,54 @@
+{extend name="shopping:shoppingbase" /}
+{block name="tttt"}{/block}
+{block name="title2"}
+<style>
+    .xde img{
+        width:76px;
+        height:76px;
+    }
+
+    .sqcen .sqtablet textarea {
+        color:#000;
+    }
+</style>
+    <!-- 晒单弹框 start -->
+    <form id="myForm">
+    <div id="freetryfor" class="sqcen r5" style="display:none;">
+        <div class="sqtablet clearfix">
+            <a id="dialogclose" class="scengbs dlclose" href="javascript:void(0)"></a>
+            <h2>晒单</h2>
+            <div class="pingj">
+                <p>
+                    <a href="javascript:void(0)" onclick="yincang(this)" data-score="3" id="haopin" class="hpbjs mr30"><i class="xx xx1"></i>好评</a>
+                    <a href="javascript:void(0)" onclick="yincang(this)" data-score="2" id="zhongpin" class="mr30"><i class="xx xx2"></i>中评</a>
+                    <a href="javascript:void(0)" onclick="yincang(this)" data-score="1" id="chapin" class="mr30"><i class="xx xx3"></i>差评</a>
+                </p>
+            </div>
+            <input id="score" value="3" type="hidden">
+            <input id="goods_id" value="" type="hidden">
+            <input id="order_id" value="" type="hidden">
+            <textarea id="content" placeholder="多说点吧，你是别人的指导方针"></textarea><br><span class="zs">0/500</span>
+            <div style="color: #f00;margin-left: 50px;display: none;" id="tishi">不满意吗？写下原因吧〜</div>
+            <div class="tp clearfix">
+               <div class="pb25 buttadd1" style="width:500px;float:left;">
+                   <div class="tj" style="color:#fff;margin-left: 0px;margin-bottom:0px;background:url('http://i1.douguo.net/upload/banner/1420781397.jpg') no-repeat; ">
+                    <button id="swfbtn2" type="button"></button>
+                   </div>
+
+
+                    <span class="inblok mtm fcc">(单次上传请不要超过4张)</span>
+               </div>
+                <br>
+                <div class="tpxs clearfix" id="xtp"></div>
+            </div>
+            <div class="tj">
+                <a href="javascript:void(0)" id="tijiao">提交</a>
+            </div>
+        </div>
+    </div>
+    <div class="blobg" style="height: 2342px;display:none;"></div>
+    </form>
+<div class="zwdd clearfix">
+		<img src="__STATIC__/images/zwdd.png">
+	</div>
+{/block}

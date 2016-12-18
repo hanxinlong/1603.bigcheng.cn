@@ -1,0 +1,19 @@
+﻿{extend name="user:basemodel" /}
+{block name="setInfo"}{/block}
+{block name="title2"}
+
+<div id="main" class="clearfix pt50">
+    <h2 id="page_cm_id" ctype="user" val="8448714" class="hidden">希尔伯特程的留言</h2>
+    <div class="xcomme mb65" id="comment_container"><div class="joping mbm clearfix"><div class="coimg mrm"><a href="__SITE__/index/user/.html" rel="nofollow" target="_blank"><img alt="希尔伯特程" src="__STATIC__/images//48_u25488547121833175506.jpg"></a></div><div class="cpont" id="weiboDiv"><textarea name="comment_content" node-type="editor" class="textping r3 mbm"></textarea><button name="submit_content_btn" reload="false" onclick="comments.submitComment(8448714, this)" type="button" id="commentbut" class="btnpl">评论</button></div></div><div class="joping ptb2010 clearfix libdm" data-template="lists" id="26044"><div class="coimg mrm"><a href="__SITE__/index/user/.html" rel="nofollow" target="_blank"><img alt="希尔伯特程" src="__STATIC__/images//48_u25488547121833175506.jpg"></a></div><div class="cpont"><div class="cppdd clearfix mb10 lineh16"><span class="clo"><a class="user" href="__SITE__/index/user/.html" target="_blank" rel="nofollow">希尔伯特程</a></span><span class="fcc mls">2016-12-02 21:22:39</span><span class="fcc mls"><a href="javascript:void(0);" onclick="comments.delcomment('26044', 'user')">删除</a>&nbsp;&nbsp;<a href="javascript:void(0);" onclick="comments.reply('希尔伯特程', 'u25488547121833', '8448714','26044')">回复</a></span></div><p class="mb10 fsm atcolor">asd </p></div></div></div>
+    <a name="cmt_btm"></a>
+    <div class="pagination" id="cm_pages"></div>        
+</div>
+<script>
+        $(document).ready(function () {
+            comments.init("user","8448714","","","","希尔伯特程");
+            comments.showComments(0);
+        });
+</script>
+
+
+{/block}

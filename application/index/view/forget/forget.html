@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="注册成为豆果美食会员，美食,菜谱,家常菜谱,美食菜谱,豆果美食菜谱,最新菜谱,美食分享,菜谱分享,减肥食谱,特色小吃,西餐美食,最全的菜谱网站,美食文化,豆果美食,douguo.com">
+    <meta name="description" content="豆果美食为第一华人美食菜谱社区，提供各种美食、菜谱、食谱的做法，丰富的菜谱大全可以让您轻松地学会怎么做美食，展现自己的高超厨艺，与千万会员一同分享美味的人生！">
+    <meta name="author" content="豆果美食 www.douguo.com">
+    <meta name="google-site-verification" content="2gKQfz4b2duFoGhkAMtl9EsHRd0nJWda-SxknzWYAGA">
+    <meta name="y_key" content="e4b03bf435642365">
+    <meta property="wb:webmaster" content="5d3113ad6af60df9">
+    <meta name="varify-v1" content="baidu-z6YB9Um9kaoKXmFf">
+    <meta name="baidu-site-verification" content="f4bd7fa0f7e3712360b62873fcb22edd"/>
+    <meta name="apple-itunes-app" content="app-id=434212566"/>
+    <link href="__STATIC__/css/bootstrap1.min.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+    <link href="__STATIC__/css/passport1.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+    
+    <title>找回密码 - 豆果美食</title>
+
+    
+</head>
+<body>
+        <div class="loheader">
+        <div class="htop">
+            <div class="hlogo"><a title="豆果美食" href="http://www.douguo.com/">豆果美食</a></div>      
+        </div>    
+    </div>
+    <div id="main" class="clearfix">
+        
+<div class="bglo clearfix">         
+    <div class="thed">
+        <h2>找回密码</h2>
+        <span>已有账号，<a href="/login">直接登录 </a></span>       
+    </div>
+    <div class="logibox">
+        <form method="post" action="{:url('Password/con')}" style="margin-bottom: 100px;">
+            <div class="itm clearfix">                              
+                <div class="iput">
+                    <input placeholder="请输入注册时填写的邮箱" name="email" autocomplete="off" id="email" value="" class="wwinct r5" type="email">
+                </div>
+                <span class="lowrong mll" id="err_email"></span>
+            </div>
+            <div class="iloo" style="margin-top: 50px;">
+                <button id="signup" type="submit" class="btnrdz r3">提交</button>
+            </div>
+        </form>
+    </div>          
+</div>
+
+    </div>
+    <div id="footer">
+    <div class="foot ptm">
+        <div class="clink relative">
+            <a href="http://www.douguo.com/about.html" rel="nofollow" target="_blank">关于豆果</a> ·
+             <a href="http://www.douguo.com/hr.html" rel="nofollow" target="_blank">在豆果工作</a> ·
+            <a href="http://www.douguo.com/user/feedback" rel="nofollow" target="_blank">意见反馈</a> ·
+                <a href="http://www.douguo.com/links.html" target="_blank">友情链接</a> · 
+            <a href="http://www.douguo.com/allrecipes/" target="_blank">菜谱大全</a> ·
+            <a href="http://www.douguo.com/brand" target="_blank">品牌馆</a>
+        </div>
+        <div class="cght">
+            ©2009-2015 <a href="http://www.douguo.com" target="_blank">北京豆果信息技术有限公司</a> <a href="http://www.miibeian.gov.cn" target="_blank" rel="nofollow">京ICP证111032号</a> 京公网安备11010102001133号 京网文[2014]0774-174号
+        </div>
+        <div class="botfans mt15">
+            <span class="bonefans">
+            </span>
+            <span class="bonefans">
+            </span>
+            <span class="bonefans">            
+            </span>
+        </div>
+    </div>
+</div>
+</body>
+
+
+
+
+<!-- <script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+
+
+<!-- <script type="text/javascript">
+/*验证邮箱或者手机号*/
+function isEmailOrPhone(text) {
+    if(!text){
+        return false;
+    }
+    var email = /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i;
+    var phone = /^1[3|4|5|7|8][0-9]\d{8}$/;
+    if (text && (email.test(text) || phone.test(text))) {
+        return true;
+    } else{
+        return false;
+    }
+}
+function isEmail(text) {
+    if(!text){
+        return false;
+    }
+    var email = /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i;
+    if (text && email.test(text)) {
+        return true;
+    } else{
+        return false;
+    }
+}
+
+function isPhone(text) {
+    if(!text){
+        return false;
+    }
+    var phone = /^1[3|4|5|7|8][0-9]\d{8}$/;
+    if (text && phone.test(text)) {
+        return true;
+    } else{
+        return false;
+    }
+}
+</script>
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-60338497-1', 'auto');
+  ga('send', 'pageview');
+</script> -->
+
+</html>

@@ -1,0 +1,270 @@
+{block name="header"}{include file="public:header" /}{/block}
+
+{block name="title"} 
+<link src="__STATIC__/css/ashopping.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+<link href="__STATIC__/css/passportshopping.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+<script type="text/javascript">
+var islogin = getCookies('user_id');
+if(islogin == '')
+{
+    var comformvalue = getCookies('comfrom');
+    var is_showloginheads = getCookies('is_showlonginlead');
+    if(is_showloginheads != 'OK')
+    {
+        if(comformvalue == 1)
+        {
+            setCookie('showNums',0);
+            showloginhead('sina');
+        }
+        else if(comformvalue == 2)
+        {
+            setCookie('showNums',0);
+            showloginhead('qq');
+        }
+    }
+}
+var is_findfriend = getCookies('is_friendinfo');
+if(is_findfriend != 'OK')
+{
+    var cnick = "多少分地方";
+    var apitype = "";
+    if(apitype == 'sina' || apitype == 'douban')
+    {
+        //findFriendtips(apitype, cnick);
+        setcookie('is_friendinfo', 'OK', 0, '/', 'www.douguo.com');
+    }
+}
+function overshow(){$("#header_usermenu").show()}
+function outshow(){$("#header_usermenu").hide()}
+</script>
+<div class="ysysy clearfix">
+    <div class="yshdh_h clearfix">  
+        <h2> 
+        <span class="ysf"><a href="__SITE__/index/shopping/shopping"> 购好货  </a>&gt; 我的订单</span>
+       
+        <span><a href="__SITE__/index/shopping/assess"> 待评价 </a></span>
+        <span class="mrx"><a href="__SITE__/index/shopping/array1"> 待收货 </a></span>
+        <span class="mrx"><a href="__SITE__/index/shopping/send"> 待发货 </a></span>
+        <span class="mrx"><a href="__SITE__/index/shopping/payment"> 待付款 </a></span>
+        <span class="mrx"><a href="__SITE__/index/shopping/shopping" style="color:black;">全部订单</a></span>
+         <span class="mrx"><a href="__SITE__/index/shopping/car"> 我的购物车 </a></span>
+        </h2>
+    </div>
+     {/block}
+ {block name="tttt"}   
+    <div class="ddxx">
+        <table width="940" cellspacing="0" cellpadding="0" border="0">
+            <tbody><tr class="spbs">
+                <td class="shangp shangpg">订单信息</td>
+                <td class="kd kdg">数量</td>
+                <td class="kd kdg">总价</td>
+                <td class="kd kdg">收货人</td>
+                <td class="kd kdg">订单时间</td>
+                <td class="kd kdg">订单状态</td>
+                <td class="kd kdg dfg">操作</td>
+            </tr>
+        </tbody></table>
+       
+    </div>
+
+ 
+        <!-- 新加 -->
+        <div id="cm_pages" class="pagination mb50 left clearfix">
+            </div>
+    <!-- 晒单弹框 end -->
+</div>
+
+<script>
+    $(document).ready(function(){
+        $(".kstxs").click(function(){
+            $(".byseei").show();
+        });
+    });
+    $(document).ready(function(){
+        $(".mclos").click(function(){
+            $(".byseei").hide();
+        })
+    })
+    $(document).ready(function(){
+        $("#dialogclose").click(function(){
+            $("#freetryfor").hide();
+            $(".blobg").hide();
+        })
+    })
+    $(function(){
+        $('.sd').click(function(){
+            var h = $(window).height() / 2 -168;
+            var w = $(window).width() / 2 - 473;
+            var he = $(document).height();
+            $("#freetryfor").css('top',h);
+            $("#freetryfor").css('left',w);
+            $('#freetryfor').show();
+            $(".blobg").css({height:he});
+            $(".blobg").show();
+            var goods_id    = $(this).attr('goods_id');
+            var order_id    = $(this).attr('order_id');
+            $('#goods_id').val(goods_id);
+            $('#order_id').val(order_id);
+            $('#content').val('');
+            $('#xtp').html('');
+        });
+        //查看物流
+        $('.tkxq').toggle(function(){
+            var obj = $(this);
+            var order_id    = $(this).attr('attr');
+            if(order_id<=0)
+            {
+                return false;
+            }
+            $.ajax({
+                type:"post",
+                url:"/mall/ajaxGetExpressLog",
+                data:"order_id="+order_id,
+                dataType:"json",
+                success: function(msg)
+                {
+                    if(msg.status=='OK')
+                    {
+                        var length   = msg.data['dan'].length;
+                        html         =' <h2>'+msg.data.express_name+'  单号：'+msg.data.express_no+'  &nbsp;&nbsp; &nbsp;&nbsp;最新动态：</h2>';
+                        if(length>0)
+                        {
+                            for(var i=0;i<length;i++)
+                            {
+                                html    +="<p>"+msg.data['dan'][i]['time']+msg.data['dan'][i]['context']+"</p>";
+                            }
+                        } else{
+                            html    += "<p style='line-height: 40px;'>暂无物流状态</p>";
+                        }
+                        obj.next('.ckwu_er').html(html);
+                        obj.next('.ckwu_er').show();
+                    }
+
+                }
+            });
+        },function(){
+            var obj = $(this);
+            obj.next('.ckwu_er').html('');
+            obj.next('.ckwu_er').hide();
+        })
+    });
+    $(document).ready(function(){
+        $("#ckwl").click(function(){
+            $(".ckwu_er").slideToggle();
+        });
+    })
+    function yincang(type){
+        var aid = type.id;
+        $('#haopin').removeClass('hpbjs');
+        $('#zhongpin').removeClass('hpbjs');
+        $('#chapin').removeClass('hpbjs');
+        var score   = $('#'+aid).attr('data-score');
+        $('#score').val(score);
+        $("#"+aid).addClass('hpbjs');
+        if(aid == 'zhongpin'){
+            $("#"+aid).css('border-color','#ffb500');
+        }else if(aid == 'chapin'){
+            $("#"+aid).css('border-color','#cccccc');
+        }
+    }
+    $(document).ready(function(){
+        $(".gb").click(function(){
+            $(this).parent().remove();
+        })
+    })
+    
+    //选择晒单评价
+    $('#haopin').click(function(){
+        $('#score').val(3);
+    });
+    $('#zhongpin').click(function(){
+        $('#score').val(2);
+    });
+    $('#chapin').click(function(){
+        $('#score').val(1);
+    });
+    //提交晒单
+    $('#tijiao').click(function(){
+        var score= $('#score').val();
+        var content= $.trim($('#content').val());
+        var img= "";
+        $("input[name='setpImages[]']").each(function(){
+            var obj     = $(this);
+            var value   =  obj.val();
+            if(value)
+                img += value+"|";
+        })
+        var goods_id= $('#goods_id').val();
+        var order_id= $('#order_id').val();
+        content = encodeURIComponent(content);
+        if((score==2||score==1)&& !$.trim(content))
+        {
+            $('#tishi').html('不满意吗？写下原因吧〜');
+            $('#tishi').show();
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"/mall/addOrderShow",
+            data:"goods_id="+goods_id+"&order_id="+order_id+"&score="+score+"&content="+content+"&img="+img,
+            dataType:"json",
+            success: function(msg)
+            {
+                showerrorinfo('提交成功','提交成功！');
+                $('#freetryfor').hide();
+                $('.blobg').hide();
+                $('#s'+order_id).html('');
+                $('#ss'+order_id).html('已完成 <br><a target="_blank" href="/mall/checkOrderStatus/'+order_id+'">订单详情</a>');
+                setTimeout(function(){location.reload();},2000);
+            },
+            error   : function ()
+            {
+                showerrorinfo('提交失败','请稍后再试！');
+                $('#freetryfor').hide();
+                $('.blobg').hide();
+            }
+        });
+    })
+
+    //晒单管理
+    function pingjia(goods_id,order_id){
+        $('#goods_id').val(goods_id);
+        $('#order_id').val(order_id);
+        $('#content').val('');
+        $('#xtp').html('');
+    }
+    function payOrder(order_id)
+    {
+        $.ajax({
+                type:"post",
+                url:"/mall/ajaxCheckOrder",
+                data:"order_id="+order_id,
+                dataType:"json",
+                
+                success: function(msg)
+                {
+                    if(msg.status != 'OK')
+                    {
+                        showerrorinfo('提示',msg.data);
+                        window.location.reload()
+                        return false;
+                    }
+                    else
+                    {
+                        window.location.href="/mall/pay/"+order_id;
+                    }
+                }
+            });
+    }
+</script>
+
+
+{/block}
+
+{block name="title2"}
+
+{/block}
+ {block name="ti"}
+
+{/block}  
+{block name="footer"}{include file="public:footer" /}{/block}

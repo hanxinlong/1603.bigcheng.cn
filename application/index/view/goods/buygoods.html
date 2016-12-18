@@ -1,0 +1,176 @@
+<div class="ysysy clearfix" xmlns="http://www.w3.org/1999/html">
+  <div class="yshdhh clearfix">
+    <p class="mpath"><a href="__SITE__/index/index/goods"> 购好货  </a>&gt;<a href=""> {$info['goods_name']} </a>&gt;</p>
+  </div>
+  <div class="syprodc mbl clearfix relative">
+    <div class="sydimg">
+      <div id="container">
+        <div class="lelit">
+          <div class="slide-pic" id="slidepic">
+            <div class="pic-container">
+              <ul>
+              {foreach $picInfo as $smallVas}
+                <li class="cur">
+                  <p>
+                  <img alt="{$info['goods_name']}" src="{$smallVas['goods_path']}" style="width:65px;height:65px;display:block;margin-left:-10px;float:left;">
+                 
+                  </p>
+                </li>
+        {/foreach}
+              </ul>
+            </div>
+            
+
+          </div>
+        </div>
+        <div class="rebig"> 
+        {foreach $picInfo as $bigVas}
+          <div class="pics">
+            <p class="p1"><a href="javascript:void(0)">
+           
+            <img id="dailyImage" alt="{$info['goods_name']}" src="{$bigVas['goods_path']}" style="width:600px;height:699px;display:block;">
+           
+            </a></p>
+          </div>
+          {/foreach}
+        </div>
+      </div> 
+    </div>
+
+    <div class="syifo">
+      <h1>{$info['goods_name']}</h1>
+      <p class="jgb">￥{$info['new_price']}<span>￥{$info['old_price']}</span>
+
+      </p>
+      <h2 class="neir">{$info['goods_des']}</h2>
+
+        <p class="jhx">
+  {if $info['freight'] == '卖家包邮'}
+        <span class="mjby">运费(￥)：{$info['freight']} </span>   
+  {else}
+        <span class="mjby">卖家包邮 </span>
+  {/if}
+          <span class="mjby_y mrl">月售：{$info['amount']}瓶</span><span class="mjby_y">发货地：{$info['place']}</span></p>
+          <div class="slk">
+            <input name="goods_id" value="18959" type="hidden">
+            <div class="amount">
+              <a class="minus " href="javascript:void(0)" id="down">-</a>
+              <input class="text-amount" autocomplete="off" data-now="{$ids}" data-max="{$info['amount']}" name="num" value="1" id="goods_num" type="text">
+              <a class="plus minus1" href="javascript:void(0)" id="up">+</a>
+            </div>
+
+            <div class="xg_gm">
+              <span class="fssd">
+                <span class="xiangou" style="display: none;">
+                  <span id="buynum"></span></span>
+                </span>
+              </div>
+            </div>
+            <div class="ljgm">
+             <a href="javascript:void(0)" class="ljgm_hs" id="buy" style="display:block;float:left;">立即购买</a>
+             <a href="javascript:void(0)" class="ljgm_hs" id="add"  style="margin-left:20px;display:block;float:left;">加入购物车</a>                     
+           </div>
+         </div>
+
+      </div>
+<script  type="text/javascript" src="__STATIC__/js/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+  $(function () {
+    var up = 1;
+    $('#up').click(function () {
+      up++;
+      if (up >= $("#goods_num").attr("data-max")) {
+        // alert(1);
+          up = $("#goods_num").attr("data-max");
+      }
+      $('#goods_num').val(up);
+    });
+    $('#down').click(function () {
+      up--;
+      if (up <= 1) {
+        up = 1;
+      }
+      $('#goods_num').val(up);
+    });
+    
+    $("#add").click(function () {
+      // alert($("#goods_num").attr("data-now"));
+        if (confirm('你确定要加入的到购物车')) {
+
+          $.post(
+            '__SITE__/index/goods/doAdd',
+            {
+              num: $("#goods_num").val(),
+              gid: $("#goods_num").attr("data-now")
+            },
+            function (data) {
+              if (data.status) {
+                   setTimeout(function () {
+                       $("#su").css({display:"block"});
+                       setTimeout(function () {
+                        $("#su").css({display:"none"});
+                         },  '3000');
+               },  '10');
+              } else {
+                   setTimeout(function () {
+                       $("#er").css({display:"block"});
+                       setTimeout(function () {
+                        $("#er").css({display:"none"});
+                         },  '3000');
+                   },  '10');
+              }
+            }, 'json');
+        } else {
+           return false;
+        }
+
+       
+    });
+    $("#buy").click(function () {
+      // alert(1);
+      location.href = '__SITE__/index/goods/buy/id/'+$("#goods_num").attr("data-now")+'/num/'+$("#goods_num").val();
+    });
+  });
+</script>
+      <div class="zjleft clearfix ">
+        <div class="content_caipu clearfix">
+         <h3>商品详情</h3>
+         <i class="xtj"></i>
+         <!--  <b class="xt_ys01"></b> -->
+       </div>
+       <!-- 加头部固定 -->
+       <div class="sytail clearfix">
+        <div class="cpnr">
+          <div class="cpnry" style="padding-top:20px;">
+            <div class="cptp">
+              <div class="guige">
+              <table width="640" cellspacing="0" cellpadding="0" border="0">
+                </table>
+              </div>
+              {foreach $details as $vas}
+              <img src="{$vas['goods_path']}">
+              {/foreach}
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sobinavv clearfix">
+        <div class="content_caipu clearfix">
+          <h3>购买须知</h3>
+          <i class="xtj"></i>
+          <!-- <b class="xt_ys01"></b> -->
+        </div>
+        <div class="gmxz_er clearfix">
+         <p><span class="aa">客户电话：</span><span class="jianj">028-87915519</span></p>
+         <p><span class="aa">服务时间：</span><span class="jianj">8:00-18:00</span></p>
+         <p><span class="aa">发货地点：</span><span class="jianj">四川 成都</span></p>
+         <p><span class="aa">售后保障：</span><span class="jianj">各位果友如包裹签收后出现任何问题请致电我们为您解决售后问题。客服电话：028-87915519</span></p>
+       </div>
+     </div>
+    <div id="su" class="sqcengw r5" style="width:300px;height:260px;display: none; position:absolute;top:50%;left:50%;margin-left:-150px;margin-top:-130px;font-size:40px;font-weight:bold;color:red;line-height:260px;text-align:center;background:url('__STATIC__/images/beijing.gif');border-radius:20px;">
+       添加成功！
+    </div>
+     <div id="er" class="sqcengw r5" style="width:300px;height:260px;display: none; position:absolute;top:50%;left:50%;margin-left:-150px;margin-top:-130px;font-size:40px;font-weight:bold;color:red;background:url('__STATIC__/images/beijing.gif');line-height:260px;text-align:center;border-radius:20px;">
+       添加失败 ！
+    </div>

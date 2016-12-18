@@ -1,0 +1,80 @@
+{extend name="shopping:shoppingbase" /}
+{block name="tttt"}{/block}
+
+
+{block name="ti"}
+
+
+               <div class="splb clearfix">
+            <div class="sb_tf">
+                <table width="940" cellspacing="0" cellpadding="0" border="0">
+                    <tbody><tr class="spbjs">
+                    <td></td>
+                        <td class="shangp">商品</td>
+                <td class="kd"></td>
+                        <td class="kd">单价</td>
+                        <td class="kd">数量</td>
+                        <td class="kd">金额</td>
+                    </tr>
+{foreach $carData as $data}
+                    <tr class="tp_tr">
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                     <td class="tpjss_t">
+                        <div class="erwem">
+                           <a href="__SITE__/index/goods/buygoods/id/{$data['goodcar_id']}" target="_blank">
+                              <img src="{$data['goods_path']}" style="width:80px;height:80px;display:block;">
+                          </a>
+                      </div>
+                  </td>
+                  <td class="tpjss_y">
+                    <div class="ewmjs">
+                       <input id="goods_id" name="goods_id" value="2063" type="hidden">
+                       <p><a href="__SITE__/index/goods/buygoods/id/{$data['goodcar_id']}" target="_blank">{$data['goods_name']}</a></p>
+                   </div>
+               </td>
+               <input id="danjia" name="danjia" value="" type="hidden">
+               <td class="kds">￥<span id="price">{$data['new_price']}</span></td>
+               <td class="kds" car-id="{$data['goods_id']}">
+                <div class="slsk clearfix">
+                    <div class="amountt">
+                        <a class="minus " id="down" href="javascript:;">-</a>
+                        <input class="text-amount" name="goods" value="{$data['gamount']}" data-max="" data-now="" id="goods_num" type="text">
+                        <a class="plus minus1" id="up1" href="javascript:;">+</a>
+                    </div>
+                    <div class="xiangou">
+                       <span id="buynum"></span>                                      </div>
+
+                   </div>
+               </td>
+               <td class="kds cl">￥<span id="jine">{$data['new_price'] * $data['gamount']}</span></td>
+           </tr>
+{/foreach}                                    </tbody></table>
+ <div class="yfze">
+            <p>应付总额： <span>￥<span id="yingfu"></span></span></p>
+            <a href="javascript:void(0)" onclick="buy3()">立即结算</a>
+        </div>
+            </div>
+        </div>
+<!-- <script type="text/javascript" src="__STATIC__/js/jquery-1.11.3.js"></script>  -->
+<script>
+//增加货物
+// 
+$("#up1").click(function () {
+    var td = $(this).parent().parent().parent();
+    alert(td.length);
+    var data = {
+        id: td.attr('car-id'),
+        goods: td.find('input[name=goods]').val(),
+    }
+    // alert(data.id);
+    // alert(data.goods);
+});
+
+
+  
+</script>          
+
+{/block}
+

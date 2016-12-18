@@ -1,0 +1,63 @@
+{block name="header"}{include file="public:header" /}{/block}
+{block name="setInfo"}
+    <div class="editnav r3 mb30"  style="margin-left:160px;">
+        <ul class="pls">
+            <li class="ls"><a href="__SITE__/index/user/setInfo"><span>基本资料</span></a></li>
+            <li><a href="__SITE__/index/user/passChange"><span>密码修改</span></a></li>
+        </ul>
+    </div>
+{/block}
+{block name="title"} 
+<div id="userplace" class="clearfix">
+    <div class="userinfo">
+        <div class="ushead">
+            <a class="user" href="__SITE__/index/user/profile">
+            <img src="{$setInfo['icons']}" alt="{$userData[0]['nickname']}" style="height:140px;width:140px;"></a>
+        </div>
+        <div class="uscome">
+            <div class="mb20 clearfix">
+                <h1 class="mb3">{$userData[0]['nickname']}&nbsp;<span class="fss inblok fcc"></span></h1>
+                <div class="clearfix">
+                    <span class="ic_male"></span>
+                    <span class="fcc"> </span>
+                </div>
+                <div class="ijfenbox left mtm">
+                <em class="armao rl3">积分</em><em class="arnuber"><a href="http://www.douguo.com/jifen/product/lists" target="_blank">{$userData[0]['coin']}</a></em>
+                </div>
+            </div>
+            <p id="uchome_desc_full" class="pingro mb25">
+                {$setInfo['personal']}</p>
+                <p id="uchome_desc_update" class="pingro mb25 hidden"><textarea id="update_profile_text"
+                    class="ediintro r3 "></textarea>
+                    <span class="edipro ptm mb25 dblok"><a href="javascript:void(0)"
+                     onclick="doUpProfile(8448714)">确认</a>　<a
+                     href="javascript:void(0)" onclick="cancelUpProfile();">取消</a></span>
+                 </p>
+            <ul class="clearfix">
+                <li class="ons"><a href="__SITE__/index/user/profile"><span>菜谱</span></a></li>
+                <li><a href="__SITE__/index/user/dish"><span>作品</span></a></li>
+                <li><a href="__SITE__/index/user/collect"><span>收藏</span></a></li>
+                <li><a href="__SITE__/index/user/comment"><span>留言</span></a></li>
+                <li><a href="__SITE__/index/user/brand"><span>我喜欢</span></a></li>
+            </ul>
+        </div>
+        <div class="numifo">
+            <ul>
+                <li class="lirdr"><a href="__SITE__/index/user/friends" rel="nofollow" id="colltimes">{$collectTimes} </a><br>收藏
+                </li>
+                <li class="lirdr"><a href="__SITE__/index/user/fans" rel="nofollow">0</a><br>粉丝
+                </li>
+                <li class="lirdr"><a href="__SITE__/index/user/profile" rel="nofollow">{$times}</a><br>菜谱
+                </li>
+                <li class="lirdr"><a href="__SITE__/index/user/profile" rel="nofollow">0</a><br>喜欢
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="title2"}
+{__block__}
+{/block}
+{block name="footer"}{include file="public:footer" /}{/block}

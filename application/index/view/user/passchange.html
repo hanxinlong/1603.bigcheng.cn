@@ -1,0 +1,107 @@
+
+{extend name="user:basemodel" /}
+{block name="title"}{/block}
+{block name="title2"}
+<script type="text/javascript">
+	$(function () {
+		function checkOrignPwd() {
+			$.post(
+				'checkOrignPwd',
+				{
+					passwd: $('#passwd').val()
+				},
+				function (data) {
+					if (data.status) {
+						$("#op").html('<font color="green">原密码正确</font>');
+						return true;
+					} else {
+						$("#op").html('<font color="red">原密码错误，请重新输入</font>');
+						return false;
+					}
+				}, 'json');
+		}
+		function checkNewPwd() {
+			var reg = /^[a-zA-Z]\w{5,17}$/;
+			 if (reg.test($("#newpasswd").val())) {
+                $("#np").html('<font color="green">新密码通过</font>');
+                return true;
+            } else if($("#newpasswd").val() == ''){
+                $("#np").html('<font color="red">新密码不能为空</font>');
+                return false;
+            } else {
+            	$("#np").html('<font color="red">以字母开头，6~18位</font>');
+                return false;
+            }
+
+		}
+		var Flag = 0;
+		function checkReNewPwd() {
+			if ($("#newpasswd").val() == $("#cfmpasswd").val()) {
+				Flag = 1;
+				 $("#cp").html('<font color="green">密码通过</font>');
+                return true;
+			} else {
+				$("#cp").html('<font color="red">两次输入密码不一样</font>');
+                return false;
+			}
+		}
+		$("#passwd").blur(function () {
+			checkOrignPwd();
+		});
+		$("#newpasswd").blur(function () {
+			checkNewPwd();
+		});
+		$("#cfmpasswd").blur(function () {
+			checkReNewPwd();
+		});
+		$('#btn').click(function () {
+			if ((checkOrignPwd() == undefined) && checkNewPwd() && Flag) {
+			
+				$.post(
+						'doUpdate',
+						{
+							newpasswd: $("#newpasswd").val()
+						},
+						function (data) {
+							if (data.status) {
+
+								location.href = '__SITE__/index/user/passChange';
+							} else {
+							}
+						}, 'json');
+				return false;
+			} else {
+				return false;
+			}
+		});
+	});
+</script>
+
+	<div class="perfe mll mb35" style="margin-left:160px;">			
+		<div class="itpr mbl clearfix">
+			<label>原始密码：</label>
+			<div class="iput">
+				<input id="passwd" name="passwd" value="" class="retext r5" maxlength="20" type="password">
+			</div>
+			<span class="mll" id="op"></span>
+		</div>
+		<div class="itpr mbl clearfix">
+			<label>新密码：</label>
+			<div class="iput">
+				<input id="newpasswd" name="newpasswd" value="" class="retext r5" maxlength="20" type="password">
+			</div>
+			<span class="mll" id="np"></span> 
+		</div>
+		<div class="itpr mbl clearfix">
+			<label>确认新密码：</label>
+			<div class="iput">
+				<input id="cfmpasswd" name="cfmpasswd" value="" class="retext r5" maxlength="20" type="password">
+			</div>
+			<span class="mll" id="cp"></span>
+		</div>
+		<div class="pmtr">
+			<button id="btn" type="submit" class="btnlo fwb">保存</button>
+		</div>
+	</div>
+
+{/block}

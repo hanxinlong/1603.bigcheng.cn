@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords"
+    content="注册成为豆果美食会员，美食,菜谱,家常菜谱,美食菜谱,豆果美食菜谱,最新菜谱,美食分享,菜谱分享,减肥食谱,特色小吃,西餐美食,最全的菜谱网站,美食文化,豆果美食,douguo.com">
+    <meta name="description" content="豆果美食为第一华人美食菜谱社区，提供各种美食、菜谱、食谱的做法，丰富的菜谱大全可以让您轻松地学会怎么做美食，展现自己的高超厨艺，与千万会员一同分享美味的人生！">
+    <meta name="author" content="豆果美食 www.douguo.com">
+    <meta name="google-site-verification" content="2gKQfz4b2duFoGhkAMtl9EsHRd0nJWda-SxknzWYAGA">
+    <meta name="y_key" content="e4b03bf435642365">
+    <meta property="wb:webmaster" content="5d3113ad6af60df9">
+    <meta name="varify-v1" content="baidu-z6YB9Um9kaoKXmFf">
+    <meta name="baidu-site-verification" content="f4bd7fa0f7e3712360b62873fcb22edd"/>
+    <meta name="apple-itunes-app" content="app-id=434212566"/>
+    <link href="__STATIC__/css/bootstrap.min.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+    <link href="__STATIC__/css/login_passport.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+     <script type="text/javascript" src="__STATIC__/js/jquery-1.11.3.js"></script>
+    <!-- <script type="text/javascript" src="__STATIC__/js/jquery-1.8.2.min.js"></script> -->
+    <script src="__STATIC__/js/register.js"></script>  
+    <script type="text/javascript" src="__STATIC__/js/bootstrap.min.js"></script>
+
+
+    <title>手机号注册 - 豆果美食</title>
+
+
+</head>
+<body>
+</div>
+<div id="main" class="clearfix">
+<form action="__SITE__/index/auth/doRegister">
+    <div class="bglo clearfix">
+        <div class="thed">
+            <h2>新用户注册</h2>
+            <span>已有账号，<a href="__SITE__/index/auth/login">直接登录 ></a></span>
+        </div>
+        <div class="logibox">
+            <div class="itm clearfix">
+                <div class="iput">
+                    <input id="username" name="username" placeholder="请输入手机号" autocomplete="off" onfocus="showdesc(this);"
+                    class="wwinct r5" type="text">
+                </div>
+                <span class="lowrong mll" id="err_username"><p id="u"></p></span>
+            </div>
+            <div class="iisi" style="visibility: visible;">输入常用的手机号，便于登录和找回密码</div>
+            <div class="itm clearfix">
+                <div class="iput">
+                    <input id="nickname"  name="nickname" placeholder="请输入昵称" onfocus="showdesc(this);" class="wwinct r5" maxlength="16"
+                    type="text">
+                </div>
+                <span class="lowrong mll" id="err_nickname"><p id="n"></p></span>
+            </div>
+            <div class="iisi">中英文均可，最多16个字喔~</div>
+            <div class="itm clearfix">
+                <div class="iput">
+                    <input id="password" name="password" placeholder="请输入密码" onfocus="showdesc(this);" class="wwinct r5" maxlength="20"
+                    type="password">
+                </div>
+                <span class="lowrong mll" id="err_password"><p id="p"></p></span>
+            </div>
+            <div class="iisi">密码长度为6-20位，不能含有空格</div>
+            <div class="itm clearfix">
+                <div class="iput">
+                    <input id="dpasswd" name="repassword"     placeholder="确认密码" onfocus="showdesc(this);" class="wwinct r5" maxlength="20"
+                    type="password">
+                </div>
+                <span class="lowrong mll" id="err_dpasswd"><p id="d"></p></span>
+            </div>
+            <div class="iisi">再输入一次密码</div>
+            <div class="itm clearfix" id="jiaoyanma_div">
+                <div class="yanm">
+                    <input id="code" class="yzma r5" maxlength="6" type="text" placeholder="输入验证码"  style="display:block;float:left;"/>
+                    <!-- <div style="display:block;float:left;margin-left:30px;" id="code1">{:captcha_img()}</div> -->
+                    <div><img  id="codeing" src="{:captcha_src()}" alt="captcha" style="display:block;float:left;margin-left:30px;"/></div>
+                    <span class="lowrong mll" id="err_dpasswd"><p id="c"></p></span>
+            </div>
+        </div>
+        <div class="itm clearfix">
+            <span class="lowrong mll" id="err_public" style="margin-left: 65px"></span>
+        </div>
+        <div class="iloo">
+            <span class="lxieyi">
+                <input type="checkbox" class="czl" id="agreement"> 我已阅读并且同意<a
+                href="http://www.douguo.com/privacy.html" target="_blank" title="用户协议">豆果美食使用协议</a>
+                <b id="agreement_tip" class="fwn ff0 pls"></b>
+            </span>
+            <button id="signup" type="submit" class="btnrdz r3">注册</button>
+        </div>
+        <!-- <div id="tan" style="display:none;position:absolute;width:300px;height:300px;background:red;top:50%;left:50%;margin-left:-150px;margin-top:-150px;">注册成功</div> -->
+ 
+        </div>
+    </div>
+</div>
+</form>
+</div>
+</div>
+</body>
+ <div id="su" class="sqcengw r5" style="width:300px;height:260px;display: none; position:absolute;top:50%;left:50%;margin-left:-150px;margin-top:-130px;font-size:40px;font-weight:bold;color:red;line-height:260px;text-align:center;background:url('__STATIC__/images/beijing.gif');border-radius:20px;">
+       注册成功！
+    </div>  
+      <div id="su" class="sqcengw r5" style="width:300px;height:260px;display: none; position:absolute;top:50%;left:50%;margin-left:-150px;margin-top:-130px;font-size:40px;font-weight:bold;color:red;line-height:260px;text-align:center;background:url('__STATIC__/images/beijing.gif');border-radius:20px;">
+       注册失败！
+    </div>
+<div id="pic_captc" class="modal hide fade getup" tabindex="-1" role="dialog"
+style="top:34%;left:56%;font-family:'Microsoft Yahei';">
+<p class="uptips">请输入图片验证码</p>
+<p class="upinput"><input type="text" id="img_captc_code" maxlength="5"/><span><img id="img_captc"
+    src="picture/47b5ed30681a4293892f46ea4326debb.gif"/></span>
+    <p>
+        <a class="btnoff" id="verify_imgcaptc">获取短信验证码</a>
+    </div>
+
+    <script type="text/javascript" src="__STATIC__/js/jquery-1.8.2.min.js"></script>
+
+    <script type="text/javascript" src="__STATIC__/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        var _SIGNUPTYPE = "mobile";
+    </script>
+
+    <script type="text/javascript" src="__STATIC__/js/signup.js"></script>
+    <!-- <script type="text/javascript" src="__STATIC__/js/base.js"></script> -->
+    <script type="text/javascript" src="__STATIC__/js/websignup.js"></script>
+
+
+    <script type="text/javascript">
+  
+    function isEmail(text) {
+        if (!text) {
+            return false;
+        }
+        var email = /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i;
+        if (text && email.test(text)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isPhone(text) {
+        if (!text) {
+            return false;
+        }
+        var phone = /^1[3|4|5|7|8][0-9]\d{8}$/;
+        if (text && phone.test(text)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+<script type="text/javascript">
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-60338497-1', 'auto');
+    ga('send', 'pageview');
+
+
+
+    $(function(){
+        //检查手机号码
+        function checkUsername() {
+            var reg = /^1[34578]\d{9}$/;
+            
+            if (reg.test($("#username").val())) {
+                $("#u").html('<font color="green">合法的手机号码</font>');
+                return true;
+            } else {
+                $("#u").html('<font color="red">手机号码必须是11位的字符</font>');
+                return false;
+            }
+        }
+        //检查昵称格式
+        function checkNickname() {
+            var reg = /^[\u4e00-\u9fa5a-zA-Z0-9_]+$/;
+             if (reg.test($("#nickname").val())) {
+                $("#n").html('<font color="green">昵称已通过</font>');
+                return true;
+            } else if($("#nickname").val() == ''){
+                $("#n").html('<font color="red">昵称不能为空</font>');
+                return false;
+            } else {
+                $("#n").html('<font color="red">昵称已存在</font>');
+                return false;
+            }
+        }
+        //检查密码格式
+        function checkPassword() {
+            var reg = /^[a-zA-Z]\w{5,17}$/;
+
+            if (reg.test($("#password").val())) {
+                $("#p").html('<font color="green">合法的密码</font>');
+                return true;
+            } else{
+                $("#p").html('<font color="red">以字母开头，6~18位</font>');
+                return false;
+            }
+        }
+        //检查密码格式
+        function checkDpass()
+        {
+            if ($("#password").val() == $("#dpasswd").val()) {
+                $("#d").html('<font color="green">密码通过</font>');
+                return true;
+            } else {
+                $("#d").html('<font color="red">密码不一样</font>');
+                return false;
+            }
+
+        }
+        //实现后台与前面的密码比对
+        $("#username").blur(function() {
+            $.post(
+                    'doFind',
+                    {
+                        username: $("#username").val()
+                    },
+                    function (data) {
+                        if (data.status) {
+                            checkUsername();
+                        } else{
+                            $("#u").html('<font color="red">手机号码已存在,请登录</font>');
+                        }
+                    }, 'json'
+                );
+            
+        });
+        //刷新验证码
+        $('#codeing').click(function () {
+        
+            var rand = Date.parse(new Date) / 1000;
+            $("#codeing").attr({src:'/captcha.html?id='+rand});
+        });
+        
+        $("#code").blur(function () {
+            $.post(
+                    'doCode',
+                    {
+                        code: $("#code").val()
+                    },
+                     function (data) {
+                        
+                        if (data.status) {
+                            $("#c").html('<font color="green">验证码正确</font>');
+                        } else{
+                            $("#c").html('<font color="red">验证码错误</font>');
+                        }
+                    }, 'json'
+                );
+        })
+
+        //同意事项
+        var num = 0;
+        var agree = 0;
+        $("#agreement").click(function () {
+            num++;
+            
+            if (num % 2 == 0) {
+                $("#agreement").attr({checked: "true", value: "true"});
+                agree = 1;
+                // alert($("#agreement").val());
+            } else {
+                $("#agreement").removeAttr("checked");
+                $("#agreement").removeAttr("value");
+            }
+            
+        });
+        $("#nickname").blur(function () {
+            checkNickname();
+        })
+        $("#password").blur(function() {
+            checkPassword();
+        });
+        $("#dpasswd").blur(function() {
+            checkDpass();
+        });
+        $("#signup").click(function() {
+            if ($("#code").val() && checkUsername() && checkPassword() && checkDpass() && checkNickname() && agree) {
+                $.post(
+                    'doRegister', 
+                    {username: $("#username").val(), repassword: $("#dpasswd").val(), password: $("#password").val(), nickname: $("#nickname").val()}, 
+                    function(data){
+                        if(data.status){
+                            $('#su').css('display', 'block');
+                              
+                             $(function () {
+                                  
+                                    setTimeout( function(){
+                                    location.href = '__SITE__/index/index/index';
+                                }, 3000);
+                                })
+                        }else{
+                             // console.log(data.msg);
+                            // alert(data.msg);
+                        }
+                }, 'json');
+                return false;
+            } else {
+                return false;
+            }
+        });
+        
+
+})
+</script>
+
+</html>

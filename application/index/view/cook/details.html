@@ -1,0 +1,356 @@
+
+    <script src="__STATIC__/js/push.js"></script>
+    <script async="" src="__STATIC__/js/analytics.js"></script>
+    <script src="__STATIC__/js/a_002.js"></script>
+    <style type="text/css">:root #header + #content > #left > #rlblock_left {
+        display: none !important;
+    }</style>
+    <script src="__STATIC__/js/comments.js"></script>
+    <script type="text/javascript">
+        var __CALLBACK = 'http://www.douguo.com' + "/main/returns?ref=" + encodeURIComponent(window.location.href);
+    </script>
+    <link href="__STATIC__/css/a.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+    <link href="__STATIC__/css/passport.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+    <script src="__STATIC__/js/passportv1.js"></script>
+    <script type="text/javascript">
+        BAIDU_CLB_preloadSlots("648893", "622668", "638060", "622775", "622776", "622777", "1163190");
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?88ab8b291a27492cc500a195d5239d22";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <link rel="stylesheet" type="text/css" id="SL_Style" href="__STATIC__/css/translator.css">
+</head>
+<body>
+<a class="dg-passport" id="login"></a>
+<input id="getjs" value="0" type="hidden">
+<input name="hid_gourl" value="/cookbook/1059276.html" type="hidden">
+<script type="text/javascript">
+    var islogin = getCookies('user_id');
+    if (islogin == '') {
+        var comformvalue = getCookies('comfrom');
+        var is_showloginheads = getCookies('is_showlonginlead');
+        if (is_showloginheads != 'OK') {
+            if (comformvalue == 1) {
+                setCookie('showNums', 0);
+                showloginhead('sina');
+            }
+            else if (comformvalue == 2) {
+                setCookie('showNums', 0);
+                showloginhead('qq');
+            }
+        }
+    }
+    var is_findfriend = getCookies('is_friendinfo');
+    if (is_findfriend != 'OK') {
+        var cnick = "希尔伯特程";
+        var apitype = "";
+        if (apitype == 'sina' || apitype == 'douban') {
+            //findFriendtips(apitype, cnick);
+            setcookie('is_friendinfo', 'OK', 0, '/', 'www.douguo.com');
+        }
+    }
+    function overshow() {
+        $("#header_usermenu").show()
+    }
+    function outshow() {
+        $("#header_usermenu").hide()
+    }
+</script>
+<div id="main" class="clearfix" style="width:940px;">
+    <script type="text/javascript">
+        $(function () {
+            $("a[rel=recipe_img]").fancybox({
+                'titlePosition': 'over',
+                'cyclic': true,
+                'titleFormat': function (title, currentArray, currentIndex, currentOpts) {
+                    return '<span id="fancybox-title-over">' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" src="__STATIC__/js/jquery-1.11.3.js"></script>
+    <script type="text/javascript">
+     $(function () {
+       $('#commentbut').click(function () {
+            // alert(1);
+            
+            $.post(
+                        '__SITE__/index/cook/doComment',
+                        {
+                            comment_content: $('#editor').val(),
+                            id: $('#cpont').attr("d-id")
+                        },
+                        function (data) {
+                        var id2 = data.data.id;
+                            if (data.status) {
+                              
+                                location.href = "__SITE__/index/cook/details/id/"+id2;
+                        
+                            } else {
+
+                            }
+                        }, 'json');
+        });
+   });
+    </script>
+    <div class="mbs"></div>
+            <div class="caini clearfix mb20" style="float:right;">
+             <h3>评论 </h3>
+             <ul class="clearfix"  style="float:right;width:280px;">
+                <div class="commww mb65" id="comment_container">
+                    <h2 class="mb15 fwb">
+                        <a name="comment"></a>
+                        <a href="http://www.douguo.com/cookbook/1059276/comment" target="_blank" class="ablack">{$details['nickname']}的评论</a><span style="display:none;" class="cm_totals">{{total}}</span></h2>
+                        <div class="coping mbm clearfix"><div class="coimg mrm"><a href="__SITE__/index/user/profile" rel="nofollow" target="_blank">
+                            <img alt="多少分地方" src="{$details['finish_map']}" style="display:block;width:44px;height:44px;"></a></div>
+                            <div id="cpont" name="id" d-id="{$details['id']}">
+                                <input name="comment_content" id="editor" class="textping r3 mbm" style="width:220px;display:block;">
+                                <button name="submit_content_btn" type="button" id="commentbut" class="btnpl">评论</button>
+                            </div>
+                        </div>
+                        <img alt="多少分地方" src="{$details['finish_map']}" style="display:block;width:44px;height:44px;float:left;">
+                {foreach $commData as $commVas}
+                    {if empty($commVas['delete_time'])}
+                        <ul class="coping ptb2010 clearfix libdm" data-template="{$commVas['id']}" id="btn" style="width:180px;margin-left:50px;">
+                            <span class="span" style="width:180px;margin-left:50px;" name="con">{$commVas['content']}
+                              <!-- 
+                               -->
+                            </span>
+                        </ul>
+                    {/if}
+                {/foreach}
+                    </div>
+            </ul>
+          </div>
+
+    <div class="releft">
+        <div class="recinfo">
+            <div class="bokpic">
+                <div class="bmayi mbm" style="width:940px; height:600px;">
+                    <a class="cboxElement" rel="recipe_img" href="">
+                        <img src="{$details['finish_map']}" alt="这道菜的做法" itemprop="image" style="width:600px;height:600px;">
+                    </a>
+                </div>
+            </div>
+            <h1 id="page_cm_id" ctype="caipu" uid="628562" val="1059276" style="padding-top: 26px;">
+                {$details['title']} </h1>
+            <div class="falisc">
+                <span class="collectview">{$details['read_times']}</span>浏览
+                <span id="collectsnum" data-ids="{$numShou}">{$numShou}</span>收藏  
+    <span class="right relative">
+    <script>
+        $(document).ready(function () {
+            $(".btee").click(function () {
+                $(".byseei").show();
+            })
+        })
+    </script>
+  </span>
+  {if !empty($yon) && $yon[0]['user_id'] == session('user')['use_id']}
+  <span id="shoucang" class="right shoucanginfoaction relative mr14" style="display:block;width:60px;">
+    <a  id="shoucanginfo" href="javascript:void(0);" name="cangid" data-id="{$details['user_id']},{$details['id']}" class="cpscsc  r3">已收藏</a>
+</span>
+{else}
+<span id="shoucang" class="right shoucanginfoaction relative mr14" style="display:block;width:60px;">
+<a  id="shoucanginfo" href="javascript:void(0);" name="cangid" data-id="{$details['user_id']},{$details['id']}" class="cpscsc  r3">收藏</a>
+</span>
+{/if}
+<!-- <span id="exitshoucang" class="right shoucanginfoaction relative mr14" style="display:none;">
+ <a id="exitshou" name="exitcangid" href="javascript:void(0)" data-id="{$details['id']}"   style="display:block;background:#EC7309;color:white;width:60px;height:32px;line-height:32px;font-size:14px;padding-left:22px;border-radius:8px;">已收藏</a>
+</span>
+ -->
+
+<script type="text/javascript">
+    $(function () {
+     $('#shoucang').click(function () {
+        // alert(1);
+
+                // $('#shoucang').css({display:"none"});
+                // $('#exitshoucang').css({display:"block"});
+                $.post(
+                    '__SITE__/index/cook/doCollect',
+                    {
+                        cangid: $('#shoucanginfo').attr("data-id"),
+                    },
+                    function (data) {
+                        // alert(data);
+                        if (data.status) {
+                            // alert(1);
+                            var a = $('#collectsnum').attr('data-ids');
+                            $('#collectsnum').html(parseInt(a)+1);
+                            $('#shoucanginfo').html('已收藏');
+                            alert('收藏成功');
+                        } else {
+                            alert('已收藏');
+                        }
+                    }, 'json');
+            });
+
+
+       //  $('#exitshoucang').click(function () {
+          
+           
+           
+       //      $('#shoucang').css({display:"block"});
+       //      $('#exitshoucang').css({display:"none"});
+       //       $.post(
+       //              '__SITE__/index/cook/delCollect',
+       //              {
+       //                  exitcangid: $('#exitshou').attr("data-id"),
+       //              },
+       //              function (data) {
+       //                  if (data.status) {
+       //                      // alert(1);
+       //                  } else {
+       //                      // alert(2);
+       //                  }
+       //              }, 'json');
+       // });
+    });
+</script>
+            </div>
+            <div class="favoritceng r5" id="favoritdl" style="z-index: 9999;position:fixed;display: none; ">
+                <div class="favocontent clearfix">
+                    <a href="javascript:void(0)" class="scengb dlclose"></a>
+                    <div class="tith">
+                        <h3>添加至分组</h3>
+                    </div>
+                    <div id="shoucangTag" class="collet mtm ml30 r3">
+                        <p class="pv15 fsm">多个分组用空格隔开</p>
+                        <div id="cooktagInput" class="tmpu r3 mb15 clearfix">
+                            <span class="intput"><input id="taginfo" class="intag" name="taginfo" info="cook" type="text"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="retew r3 pb25 mb20">
+                <div class="auth" style="position: relative;">
+                    <a href="__SITE__/index/user/setinfo" rel="nofollow" target="_blank" title="{$details['nickname']}"
+                       style="display: inline-block; float: left;">
+                        <img src="{$details['icons']}" alt="这是作者头像" style="width: 36px;height: 36px;margin: 15px 10px 0 20px;">
+                    </a>
+                    <h4 style="padding-top: 20px;">
+                        <a href="http://www.douguo.com/u/u29494757357879.html" target="_blank">{$details['nickname']}</a>
+                    <em class="ic_female"></em>
+                    <span style="position: absolute;top: 20px;right: 20px;color: #999;">{$details['create_time']}</span>
+                </div>
+                <table class="retamr" width="598" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                    <tr class="mtim">
+                        <td width="50%"><h3 class="zfliao">主料</h3></td>
+                        <td class="relative"></td>
+                    </tr>
+                {foreach $zhuFuData  as $zhuVas}
+                        <tr>
+                    
+                         {if $zhuVas['ing_type'] == 1}
+                            <td class="lirre"><span><a target="_blank" title="鹌鹑蛋的做法大全" href="http://www.douguo.com/ingredients/%E9%B9%8C%E9%B9%91%E8%9B%8B">{$zhuVas['name']}</a></span>
+                            </td> 
+                             <td class="lirre"><span class="right">{$zhuVas['dosage']}</span> 
+                            </td> 
+                        {/if}
+                        </tr>
+                   
+                    {/foreach}
+                
+                    <tr class="mtim">
+                        <td width="50%"><h3 class="zfliao">辅料</h3></td>
+                        <td>&nbsp;</td>
+                    </tr>
+               
+                    
+                {foreach $zhuFuData as $fuVas}
+                   
+                    <tr> {if $fuVas['ing_type'] == 0}
+                        <td class="lirre"><span><label class="fcbm inblok">{$fuVas['name']}</label></span>
+                        </td>
+                         <td class="lirre"><span class="right">{$fuVas['dosage']}</span>
+                        </td> {/if}
+                     </tr>
+                     
+                 {/foreach}   
+                   
+                     
+                    <!-- </tbody> -->
+                </table>
+                <div class="step clearfix">
+                    <h2>{$details['title']}的做法步骤</h2>
+            {foreach $stepData as $key => $stepVas}
+                <div class="stepcont mll libdm pvl clearfix">
+
+                    <div class="pldc"><a class="cboxElement" rel="recipe_img" href="javascript:;"><img src="{$stepVas['step_pic']}" style="display:block;width:128px;height:128px;"></a></div>
+                    <p><span class="fwb">{$key + 1}、</span>{$stepVas['step_describe']}<br>
+                    </p>
+                </div>
+            {/foreach}
+                <div class="xtieshi">
+                    <h3 id="tips">小贴士</h3>
+                    <p>{$details['notice']}</p>
+                </div>
+                <div style="width:600px;height:100px;margin-bottom:20px">
+                    <script type="text/javascript">
+                        /*PC菜谱详情页小贴士位置*/
+                        var cpro_id = "u2735570";
+                    </script>
+                    <script type="text/javascript" src="__STATIC__/js/c.js"></script>
+                </div>
+                <div class="mortips mb20 mll" id="displaytag">
+                    <h4>分类： </h4>
+                {foreach $tag as $tagVas}
+                    <span> <a class="btnta" href="javascript:;">{$tagVas}</a></span>
+                {/foreach}
+                </div>
+                <div class="author pts fcc">
+                    ©本菜谱的做法由 <a href="http://www.douguo.com/u/u29494757357879.html" rel="nofollow"
+                                target="_blank">{$details['nickname']}</a> 编写，未经授权不得转载
+                    <span class="pll"><a href="http://www.douguo.com/user/feedback/1059276" title="举报内容" rel="nofollow"
+                                         target="_blank">举报</a> | <a href="http://www.douguo.com/printcook/1059276"
+                                                                     title="打印香辣虎皮鹌鹑蛋的做法" target="_blank"
+                                                                     rel="nofollow">打印</a></span>
+                </div>
+                <input name="cook_id" id="cook_id" value="1059276" type="hidden">
+            </div>
+            <div class="relative">
+                <a href="http://www.douguo.com/cookbook/1059276/create_dish" class="uppd">上传我做的这道菜</a>
+            </div>
+            <input name="user_id" id="user_id" value="0" type="hidden">
+
+        <script>
+            $(document).ready(function () {
+                comments.init("caipu", "1059276", "", "", "http://www.douguo.com/cookbook/1059276/comment", "香辣虎皮鹌鹑蛋");
+                $(window).scroll(function () {
+                    if ($("#comment_container").length > 0) {
+                        var omng = $(".btnupzp").offset();
+                        if ($("#comment_container").val() != 1)
+                            comments.showComments(0);
+                        $("#comment_container").val(1);
+
+                    }
+                });
+                $(".tccolse").click(function () {
+                    $(".tcma").hide();
+                });
+                $("#search").on('click', function (e) {
+                    e.preventDefault();
+                    var keywords = $('#cpsearch').val();
+                    if ('' == keywords) {
+                        alert('请输入搜索的菜谱信息');
+                        return;
+                    } else {
+                        window.location = "/search/recipe/" + keywords;
+                    }
+                });
+            });
+        </script>
+        <div class="left mb25 mt25">
+
+        </div>
+
+    </div>
+</div>

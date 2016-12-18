@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/pintuer.css">
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/admin.css">
+    <script src="__ADMINSTATIC__/js/jquery.js"></script>
+    <script src="__ADMINSTATIC__/js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="__SITE__/admin/course/course">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder">菜谱管理</strong>
+        &nbsp;&nbsp;共有<strong>{$count}</strong>个美食菜谱
+        </div>
+        <div class="padding border-bottom">
+            <ul class="search">
+                <li>
+                    <button type="button" class="button border-green" id="checkall"><span class="icon-check"></span> 全选
+                    </button>
+                    <button type="submit" class="button border-red" onclick="DelSelect()"><span class="icon-trash-o"></span> 批量删除</button>
+                </li>
+                <li>搜索：</li>
+                <li>
+                    <input type="text" placeholder="请输入搜索关键字" name="keywords" value="" class="input" style="width:250px; line-height:17px;display:inline-block"/>
+                    <button type="submit" class="button border-main icon-search"> 搜索</button>
+                </li>
+            </ul>
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th width="120">ID</th>
+                <th>菜名</th>
+                <th>成品图</th>
+                <th width="100">主厨</th>
+                <th>难度</th>
+                <th>烹饪时间</th>
+                <th>菜谱描述</th>
+                <th>主料</th>
+                <th>辅料</th>
+                <th>步骤</th>
+                <th>小贴士</th>
+                <th>标签</th>
+                <th>发布时间</th>
+                <th>最近修改时间</th>
+                <th width="100">浏览次数</th>
+                <th width="100">操作</th>
+            </tr>
+            {foreach $couList as $cou}
+            <tr>
+                <td><input type="checkbox" name="id[]" value="{$cou.id}"/>
+                    {$cou.id}
+                </td>
+                <td>{$cou.title}</td>
+                <td><img  height="200" width="200" src="{$cou.finish_map}" alt=""></td>
+                <td>
+                {foreach $chefList as $chef}
+                    {if $cou.user_id == $chef.id}
+                        {$chef.nickname}
+                    {/if}
+                {/foreach}
+                </td>
+                <td>{$cou.cook_difficulty}</td>
+                <td>{$cou.cook_time}</td>
+                <td>{$cou.course_describe}</td>
+                <td>
+                {foreach $ingList as $ing} 
+                    {if $cou.id == $ing.course_id}
+                        {if $ing.ing_type == 1}
+                        {$ing.name}
+                        {/if}
+                    {/if}
+                {/foreach}
+                </td>
+                <td>
+                {foreach $ingList as $ing}
+                    {if $cou.id == $ing.course_id}
+                        {if $ing.ing_type == 0}
+                        {$ing.name}
+                        {/if}
+                    {/if}
+                {/foreach}
+                </td>
+                <td>
+                {foreach $stList as $st}
+                    {if $st.course_id == $cou.id}
+                    {$st.step_describe}
+                    {/if}
+                {/foreach}
+                </td>
+                <td>{$cou.notice}</td>
+                <td>{$cou.tag}</td>
+                <td>{$cou.create_time}</td>
+                <td>{$cou.update_time}</td>
+                <td>{$cou.read_times}</td>
+                <td>
+                    <div class="button-group"><a class="button border-red" href="javascript:void(0)" onclick="return del({$cou.id})"><span class="icon-trash-o"></span> 删除</a></div>
+                </td>
+            </tr>
+            {/foreach}
+            <tr>
+                <td colspan="8">
+                    <div class="pagelist">
+                        {$page}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+<script type="text/javascript">
+
+    function del(id) {
+        if (confirm("您确定要删除吗?")) {
+            $.post("__SITE__/admin/course/delOne",
+                {id:id},
+                function(data){
+                    if (data.status == 1) {
+                        alert(data.msg);
+                        window.location.href = "__SITE__/admin/course/course";
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                "json");
+        } else {
+            return false;        
+        }
+    }
+
+    $("#checkall").click(function () {
+        $("input[name='id[]']").each(function () {
+            if (this.checked) {
+                this.checked = false;
+            }
+            else {
+                this.checked = true;
+            }
+        });
+    })
+
+     function DelSelect() {
+        var Checkbox = false;
+        var id = '';
+        $("input[name='id[]']").each(function () {
+            if (this.checked == true) {
+                id = id+this.value+',';
+                Checkbox = true;
+            } 
+        });
+        id=id.substring(id.length-1,',');
+        if (Checkbox) {
+            var t = confirm("您确认要删除选中的内容吗？");
+            if (t == false){
+                return false;
+            } else {
+                $.post("__SITE__/admin/course/delMore",
+                        {id:id},
+                        function(data){},"json");
+            }
+            alert("删除成功!");
+            return false;
+        }
+    }
+
+</script>
+</body>
+</html>

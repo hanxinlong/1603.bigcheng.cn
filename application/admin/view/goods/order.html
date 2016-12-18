@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/pintuer.css">
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/admin.css">
+    <script src="__ADMINSTATIC__/js/jquery.js"></script>
+    <script src="__ADMINSTATIC__/js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="">
+    <div class="panel admin-panel">
+        <div class="panel-head"><strong class="icon-reorder"> 订单列表</strong>
+        &nbsp;&nbsp;共有<strong>{$count}</strong>条订单
+        </div>
+        <table class="table table-hover text-center">
+            <tr>
+                <th width="120">订单ID</th>
+                <th>商品名</th>
+                <th>顾客</th>
+                <th>商品图</th>
+                <th>价格</th>
+                <th>购买量</th>
+                <th>订单状态</th>
+                <th>下单时间</th>
+            </tr>
+            {foreach $orderInfo as $info}
+            <tr>
+                <td>{$info.id}</td>
+                <td>{$info.goods_info}</td>
+                {foreach $user as $p}
+                {if $p.id == $info.user_id}
+                <td>{$p.nickname}</td>
+                {/if}
+                {/foreach}
+                <td>
+                {foreach $cover as $pic}
+                    {if $pic.goods_id == $info.goods_id}
+                    <img  height="100" width="100" src="{$pic.goods_path}" alt="商品图">
+                    {/if}
+                {/foreach}
+                </td>
+                <td>{$info.price}</td>
+                <td>{$info.count}</td>
+                <td>{$info.goods_status}</td>
+                <td>{$info.goods_time}</td>
+            </tr>
+            {/foreach}
+            <tr>
+                <td colspan="8">
+                    <div class="pagelist">
+                        {$page}
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+</body>
+</html>

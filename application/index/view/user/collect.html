@@ -1,0 +1,67 @@
+﻿{extend name="user:basemodel" /}
+{block name="setInfo"}{/block}
+{block name="title2"}
+<div id="main" class="clearfix pt50">
+    <div class="clectnav clearfix">
+        <ul class="mb20">
+        {if !empty($collectTimes)}
+            <li class="lirdo ls"><a href="/u/u25488547121833/collect">收藏的菜谱</a></li><span  id="times">({$collectTimes})</span>
+        {/if}
+        </ul>
+    </div>
+    {if !empty($collectCourse)}   
+    <div class="maleft">
+        {foreach $collectCourse as $collVas}
+        <div class="usrecie mb25 clearfix">
+            <div class="faveone" id="{$collVas['id']}" >
+                <div class="sanic mrl relative">
+                    <a href="__SITE__/index/cook/details/id/{$collVas['id']}" target="_blank" title="水煮牛肉 (正宗川味家常)"
+                    style="background: url({$collVas['finish_map']}) no-repeat 0 -20px"
+                    class="wh186140"></a>
+                </div>
+                <h3><a href="http://www.douguo.com/cookbook/1102587.html" target="_blank" class="fwb">{$collVas['title']}</a></h3>
+                <p class="pbm fsm">by {$collVas['nickname']}</p>
+                <div class="clearfix ptm left">
+                 <span><a id="quxiao"  onclick="cangDel({$collVas['id']})" cookid="1485600" username="u80077665648856" class="caipudelete"><em class="ic_qxshouc mrs "></em>取消收藏</a></span>
+             </div>
+         </div>
+     </div>
+     {/foreach}
+        <div class="pagination mt30 mb30">
+        </div>
+    </div>
+    {else}  
+    <div class="noword fsm">
+        你还没有收藏过菜谱呢 <a href="__SITE__/index/cook/publish">收藏你的菜谱</a>
+    </div>
+    {/if}
+</div>
+<div id="username" username="u25488547121833"></div>
+
+</div>
+<script src="__STATIC__/js/jquery-1.11.3.js"></script>
+<script>
+function cangDel(id)
+{
+    // alert("#"+id);
+    $.post(
+            '__SITE__/index/user/quCang',
+            {
+                id: id
+            },
+            function (data) {
+                if (data.status) {
+                  var a = $("#colltimes").html();
+                  
+                    $("#colltimes").html(parseInt(a)-1);
+                     $("#times").html(parseInt(a)-1);
+                    $('#'+id).remove();
+                     alert('取消收藏成功');
+                } else {
+                     alert('取消收藏失败');
+                }
+            }, 'json');
+}
+</script>
+
+{/block}

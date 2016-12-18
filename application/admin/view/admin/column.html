@@ -1,0 +1,94 @@
+    <!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title>栏目管理</title>
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/pintuer.css">
+    <link rel="stylesheet" href="__ADMINSTATIC__/css/admin.css">
+    <script src="__ADMINSTATIC__/js/jquery-1.11.3.js"></script>
+    <script src="__ADMINSTATIC__/js/jquery.js"></script>
+    <script src="__ADMINSTATIC__/js/pintuer.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 板块列表</strong></div>
+    <table class="table table-hover text-center">
+        <tr>
+            <th width="5%">ID</th>
+            <th>栏目名称</th>
+            <th>描述</th>
+            <th width="250">操作</th>
+        </tr>
+        {foreach $cateList as $val}    
+        <tr>
+            <td>{$val.id}</td>
+            <td>{$val.classname}</td>
+            <td>{$val.description}</td>
+            <td>
+                <div class="button-group">
+                    <a type="button" class="button border-main" href="modProgram.html?id={$val.id}&name={$val.classname}&content={$val.description}"><span class="icon-edit"></span>修改</a>
+                    <a class="button border-red" href="javascript:void(0)" onclick="return del({$val.id})"><span
+                            class="icon-trash-o"></span> 删除</a>
+                </div>
+            </td>
+        </tr>
+        {/foreach}
+    </table>
+</div>
+<script>
+    function del(id) {
+        if (confirm("您确定要删除吗?")) {
+            $.post("__SITE__/admin/admin/delProgram",
+                        {id:id},
+                        function(data){
+                            if (data.status == 1) {
+                                alert(data.msg);
+                            window.location.href = "__SITE__/admin/admin/column";
+                            } else {
+                                alert(data.msg);
+                            }
+                        },
+                        "json");
+        } else {
+            return false;
+        }
+    }
+</script>
+<div class="panel admin-panel margin-top">
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加栏目</strong></div>
+    <div class="body-content">
+        <form method="post" class="form-x" action="__SITE__/admin/admin/addProgram">
+            <input type="hidden" name="id" value=""/>
+            <div class="form-group">
+                <div class="label">
+                    <label>栏目名称：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" name="title" value="" data-validate="required:请输入标题"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>栏目描述：</label>
+                </div>
+                <div class="field">
+                    <textarea type="text" class="input" name="content" style="height:100px;"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

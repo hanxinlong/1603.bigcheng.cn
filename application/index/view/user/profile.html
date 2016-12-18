@@ -1,0 +1,28 @@
+{extend name="user:basemodel" /}
+{block name="setInfo"}{/block}
+{block name="title2"}
+<div id="main" class="clearfix">
+{if !empty($userData)}
+     <div class="usrecie clearfix mb25" style="width:940px;">
+      <h2 class="pb13" style="margin-top:40px;width:940px;">{$userData[0]['nickname']}发布的菜谱<span><a href="" title="查看韩昕龙全部菜谱" target="_blank">({$times})</a></span></h2>
+      {foreach $userData as $course}
+      <div class="reone relative r3 mrxl">
+        <a href="__SITE__/index/cook/details/id/{$course['id']}" target="_blank">
+          <img src="{$course['finish_map']}" alt="wdeew">
+      </a>
+      <h3><a href="__STATIC__/index/picture/200.jpg" target="_blank">
+       <i class="ionly">独家</i>{$course['course_describe']}</a>
+    </h3>
+    <span>收藏 0评论</span>
+    </div>
+    {/foreach}
+    </div>
+    {$page}
+{else}
+    <div class="noword fsm">
+        你还没有发布过菜谱呢 <a href="__SITE__/index/cook/publish">上传你的菜谱</a>
+    </div>
+{/if}
+</div>
+{/block}
+

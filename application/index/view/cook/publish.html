@@ -1,0 +1,482 @@
+<!-- 用户中心相关资源 -->
+<link href="__STATIC__/css/pub_passport.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+<script src="__STATIC__/js/pub_passportv1.min.js"></script>
+
+<link href="__STATIC__/css/saved_resource.css" charset="UTF-8" rel="stylesheet" type="text/css" media="screen">
+
+
+</head>
+<body> 
+{if session('user')}
+    <div id="BAIDU_DUP_fp_wrapper"
+    style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;">
+</div>
+<a class="dg-passport" id="login"></a>
+<input type="hidden" id="getjs" value="0">
+<input type="hidden" name="hid_gourl" value="/upfood.html">
+
+<div id="main" class="clearfix">
+     <form action="__SITE__/index/cook/doCook1" method="post" name="recipeform" id="recipeform" enctype="multipart/form-data">
+    <div class="uptit relative">
+        <h1>创建菜谱</h1><span class="bdyun"></span><span style="position:absolute;top:25px;right:518px;" id="fcj" attr="">从现在起，不做孤独的美食家。</span>
+    </div>
+    <div id="upwrongtips" class="upwrons hidden">请填写你的菜谱名称(30字以内)</div>
+    <div class="upfood clearfix">
+        <div class="foname pvl libufo">
+            <input type="hidden">
+            <input id="cook_name" name="cook_name" type="text" maxlength="30" class="upfnam r5" value="菜谱名称"
+            onfocus="if(this.value==&#39;菜谱名称&#39;) {this.value=&#39;&#39;; $(this).addClass(&#39;fcbm&#39;); }"
+            onblur="if(!this.value) {this.value=&#39;菜谱名称&#39;;$(this).removeClass(&#39;fcbm&#39;);}">
+            <input id="purview" name="purview" value="0" type="hidden">
+            <select name="cook_level" class="seleco">
+                <option>原创</option>
+                <option>转载</option>
+            </select>
+        </div>
+        <div class="foicp pvl clearfix libufo">
+   
+           <div style="position: relative; display: block; overflow: hidden; width: 600px;">
+            <input type="file" name="images">
+         </div>
+
+         <img src="__STATIC__/images/bg_jiaic.jpg" alt=""  style="width:600px;height:300px;float:left;">
+
+         
+       
+         <div class="mrl" id="imgUploadSucc" style="display:none;position: relative;">
+            <img id="upCookImageCover" src="http://www.douguo.com/upfood.html"
+            style="cursor:pointer;width:600px; height:400px;">
+            <span title="更换图片" class="ic_chare2" style="right:20px;"></span>
+        </div>
+        <div class="restory pbm" style="margin-top: 20px;">
+            <select id="cook_difficulty" name="cook_difficulty" class="seleco">
+                <option value="">烹饪难度</option>
+                <option>切墩(初级)</option>
+                <option>配菜(中级)</option>
+                <option>掌勺(高级)</option>
+            </select>
+            <select id="costtime" name="costtime" class="seleco">
+                <option value="">烹饪时间</option>
+                <option value="10分左右">10分钟左右</option>
+                <option value="10-30分钟">10-30分钟</option>
+                <option value="30-60分钟">30-60分钟</option>
+                <option value="1小时以上">1小时以上</option>
+            </select>
+        </div>
+        <div class="rory" style="width:640px;">
+            <textarea name="cookStory" style="width:630px;" class="strtext r3"
+            onfocus="if(this.value==&#39;这道菜背后的故事～(选填)&#39;) {this.value=&#39;&#39;; $(this).addClass(&#39;fcbm&#39;); }"
+            onblur="if(!this.value) {this.value=&#39;这道菜背后的故事～(选填)&#39;;$(this).removeClass(&#39;fcbm&#39;);}">这道菜背后的故事～(选填)</textarea>
+
+        </div>
+
+    </div>
+ 
+ 
+
+
+
+        <div class="fosetp pv15 clearfix">
+
+
+        <div style="clear: both;"></div>
+
+        <ul id="phonetic1" class="ui-sortable">
+          {foreach $stepem as $key => $k}
+           <li class="nsetp mbm clearfix" style="cursor:move">
+
+           <div style="position: relative; display: block; overflow: hidden; width: 140px; float:left;">
+
+            <input tabindex="-1" type="file" name="uploadFile[]">
+          </div>
+
+          <div style="float:left;">
+        
+            <img src="__STATIC__/images/step.png" style="display: block; float:left; background:red; width: 150px;height:90px;">
+          <span class="umber rl3" title="按住左键即可拖动排序" style="display:block;float:left;">{$key}</span>
+          <span class="bzmw mrs" style="display:block;float:left;"><textarea onclick="$(this).focus();" name="stepInfos[]"
+           class="steptext r3 fcbm"></textarea></span>
+         </div>
+
+       </li> 
+       {/foreach}
+     
+</ul>
+</div>
+    <div class="ingredient pvl clearfix">
+        <div class="moom clearfix mr30" id="zhuf">
+            <div class="mct clearfix ptb1510">
+                <span class="liao">主料</span>
+                <span class="liang">用量</span>
+            </div>
+            <div class="mct clearfix mbs">
+                <span class="liao"><input type="text" class="liaoext r3" name="zhuliao[]" value="如:五花肉"
+                  ></span>
+                  <span class="liang"><input type="text" class="liangext r3" name="zhuliaoValue[]" value="如:250g" "></span>
+                  <a href="javascript:void(0);" tabindex="-1" class="wrng"></a>
+              </div>
+              <div class="mct clearfix mbs">
+                <span class="liao"><input type="text" class="liaoext r3 fcbm" name="zhuliao[]" value=""></span>
+                <span class="liang"><input type="text" class="liangext r3 fcbm" name="zhuliaoValue[]" value=""></span>
+                <a href="javascript:void(0);" tabindex="-1" class="wrng"></a>
+            </div>
+
+            <div class="adlan">
+                <a href="javascript:void(0);" tabindex="-1" id="zhuliao" style="display:block;">增加一栏</a>
+            </div>
+        </div>
+        <div class="moom clearfix" id="ful">
+            <div class="mct clearfix ptb1510">
+                <span class="liao">辅料</span>
+                <span class="liang">用量</span>
+            </div>
+            <div class="mct clearfix mbs">
+                <span class="liao"><input type="text" class="liaoext r3" name="fuliao[]" value="如:盐"
+                  ></span>
+                  <span class="liang"><input type="text" class="liangext r3" name="fuliaoValue[]" value="如:1勺"
+                     onfocus="if(this.value==&#39;如:1勺&#39;) {this.value=&#39;&#39;; $(this).addClass(&#39;fcbm&#39;); }"
+                     onblur="if(!this.value) {this.value=&#39;如:1勺&#39;;$(this).removeClass(&#39;fcbm&#39;);}"></span>
+                     <a href="javascript:void(0);" tabindex="-1" class="wrng"></a>
+                 </div>
+                 <div class="mct clearfix mbs">
+                    <span class="liao"><input type="text" class="liaoext r3 fcbm" name="fuliao[]" value=""></span>
+                    <span class="liang"><input type="text" class="liangext r3 fcbm" name="fuliaoValue[]"
+                     value=""></span>
+                     <a href="javascript:void(0);" tabindex="-1" class="wrng"></a>
+                 </div>
+                 <div class="adlan">
+                    <a href="javascript:void(0);" tabindex="-1" id="fuliao" style="display:block;">增加一栏</a>
+                </div>
+            </div>
+        </div>
+<div class="ltip pvl clearfix">
+    <h3>小贴士</h3>
+    <textarea name="cooktips" class="tiptext r3"
+    onfocus="if(this.value==&#39;(选填)&#39;) {this.value=&#39;&#39;; $(this).addClass(&#39;fcbm&#39;); }"
+    onblur="if(!this.value) {this.value=&#39;(选填)&#39;;$(this).removeClass(&#39;fcbm&#39;);}" id="tag">(选填)</textarea>
+</div>
+<div class="tag">
+    <h3>添加标签（多个标签用空格隔开）</h3>
+    <div id="cooktagInput" class="tipu r3 mb20 clearfix">
+        <span class="intput"><input type="text" id="taginfo" name="taginfo" info="upfood" class="intag fcbm"
+            value=""></span>
+        </div>
+        <div class="hotap mb15 clearfix">
+            <span>常用标签:</span>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">云南菜</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">锅贴</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">贫血</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">下奶</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">骨质疏松</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">便秘</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">汉堡</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">经期</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">肉夹馍</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">排毒养颜</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">凉面</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">花卷</a>
+        </div>
+        <!--视频-->
+        <div id="jiaoyanma_div" style="margin-left:-70px;margin-top:10px"></div>
+        <div class="mtm ff0" id="checkword"></div>
+    </div>
+</div>
+
+ <div class="fbcaip mb50">
+    <button id="uploadCaipuInfo1" type="submit" class="btnfb fwb">发布</button>
+</div>
+</form>
+{else}
+    <div id="BAIDU_DUP_fp_wrapper"
+    style="position: absolute; left: -1px; bottom: -1px; z-index: 0; width: 0px; height: 0px; overflow: hidden; visibility: hidden; display: none;">
+</div>
+<a class="dg-passport" id="login"></a>
+<input type="hidden" id="getjs" value="0">
+<input type="hidden" name="hid_gourl" value="/upfood.html">
+
+<div id="main" class="clearfix">
+     <form action="__SITE__/index/cook/doCook" method="post" name="recipeform" id="recipeform" enctype="multipart/form-data">
+    <div class="uptit relative">
+        <h1>创建菜谱</h1><span class="bdyun"></span><span style="position:absolute;top:25px;right:518px;" id="fcj" attr="">从现在起，不做孤独的美食家。</span>
+    </div>
+    <div id="upwrongtips" class="upwrons hidden">请填写你的菜谱名称(30字以内)</div>
+    <div class="upfood clearfix">
+        <div class="foname pvl libufo">
+            <input type="hidden">
+            <input id="cook_name" name="cook_name" type="text" maxlength="30" class="upfnam r5" value="菜谱名称"
+            onfocus="if(this.value==&#39;菜谱名称&#39;) {this.value=&#39;&#39;; $(this).addClass(&#39;fcbm&#39;); }"
+            onblur="if(!this.value) {this.value=&#39;菜谱名称&#39;;$(this).removeClass(&#39;fcbm&#39;);}">
+            <input id="purview" name="purview" value="0" type="hidden">
+            <select name="cook_level" class="seleco">
+                <option value="0">原创</option>
+                <option value="1">转载</option>
+            </select>
+        </div>
+        <div class="foicp pvl clearfix libufo">
+   
+           <div style="position: relative; display: block; overflow: hidden; width: 600px;">
+            <input type="file" name="images">
+         </div>
+         {if empty($damap)}
+         <img src="__STATIC__/images/bg_jiaic.jpg" alt=""  style="width:600px;height:300px;float:left;">
+         {else}
+         <img src="{$damap}" alt=""  style="width:600px;height:300px;float:left;">
+         {/if}
+         
+       
+         <div class="mrl" id="imgUploadSucc" style="display:none;position: relative;">
+            <img id="upCookImageCover" src="http://www.douguo.com/upfood.html"
+            style="cursor:pointer;width:600px; height:400px;">
+            <span title="更换图片" class="ic_chare2" style="right:20px;"></span>
+        </div>
+        <div class="restory pbm" style="margin-top: 20px;">
+            <select id="cook_difficulty" name="cook_difficulty" class="seleco">
+                <option value="">烹饪难度</option>
+                <option value="1">切墩(初级)</option>
+                <option value="2">配菜(中级)</option>
+                <option value="3">掌勺(高级)</option>
+            </select>
+            <select id="costtime" name="costtime" class="seleco">
+                <option value="">烹饪时间</option>
+                <option value="10分左右">10分钟左右</option>
+                <option value="10-30分钟">10-30分钟</option>
+                <option value="30-60分钟">30-60分钟</option>
+                <option value="1小时以上">1小时以上</option>
+            </select>
+        </div>
+        <div class="rory" style="width:640px;">
+            <textarea name="cookStory" style="width:630px;" class="strtext r3"
+            onfocus="if(this.value==&#39;这道菜背后的故事～(选填)&#39;) {this.value=&#39;&#39;; $(this).addClass(&#39;fcbm&#39;); }"
+            onblur="if(!this.value) {this.value=&#39;这道菜背后的故事～(选填)&#39;;$(this).removeClass(&#39;fcbm&#39;);}">这道菜背后的故事～(选填)</textarea>
+            <input type="submit" name="fin" value="上传图片">
+        </div>
+
+    </div>
+ 
+ 
+</form>
+
+
+        <div class="fosetp pv15 clearfix">
+
+
+        <div style="clear: both;"></div>
+        <form action="__SITE__/index/cook/doStep" method="post" name="recipeform" id="recipeform" enctype="multipart/form-data">
+        <input type="submit" name="step" value="批量上传" style="display:block;margin-bottom:20px;">
+        <ul id="phonetic1" class="ui-sortable">
+
+          {foreach $stepem as $key => $k}
+           <li class="nsetp mbm clearfix" style="cursor:move">
+
+           <div style="position: relative; display: block; overflow: hidden; width: 140px; float:left;">
+
+            <input tabindex="-1" type="file" name="uploadFile[]">
+          </div>
+
+          <div style="float:left;">
+        
+            <img src="__STATIC__/images/step.png" style="display: block; float:left; background:red; width: 150px;height:90px;">
+          <span class="umber rl3" title="按住左键即可拖动排序" style="display:block;float:left;">{$key}</span>
+          <span class="bzmw mrs" style="display:block;float:left;"><textarea onclick="$(this).focus();" name="stepInfos[]"
+           class="steptext r3 fcbm"></textarea></span>
+         </div>
+
+       </li> 
+       {/foreach}
+
+</ul>
+<form>
+</div>
+    <div class="ingredient pvl clearfix">
+        <div class="moom clearfix mr30" id="zhuf">
+            <div class="mct clearfix ptb1510">
+                <span class="liao">主料</span>
+                <span class="liang">用量</span>
+            </div>
+            <div class="mct clearfix mbs">
+                <span class="liao"><input type="text" class="liaoext r3" name="zhuliao[]" value="如:五花肉"
+                  ></span>
+                  <span class="liang"><input type="text" class="liangext r3" name="zhuliaoValue[]" value="如:250g" "></span>
+                  <a href="javascript:void(0);" tabindex="-1" class="wrng"></a>
+              </div>
+              <div class="mct clearfix mbs">
+                <span class="liao"><input type="text" class="liaoext r3 fcbm" name="zhuliao[]" value=""></span>
+                <span class="liang"><input type="text" class="liangext r3 fcbm" name="zhuliaoValue[]" value=""></span>
+                <a href="javascript:void(0);" tabindex="-1" class="wrng"></a>
+            </div>
+
+            <div class="adlan">
+                <a href="javascript:void(0);" tabindex="-1" id="zhuliao" style="display:block;">增加一栏</a>
+            </div>
+        </div>
+        <div class="moom clearfix" id="ful">
+            <div class="mct clearfix ptb1510">
+                <span class="liao">辅料</span>
+                <span class="liang">用量</span>
+            </div>
+            <div class="mct clearfix mbs">
+                <span class="liao"><input type="text" class="liaoext r3" name="fuliao[]" value="如:盐"
+                  ></span>
+                  <span class="liang"><input type="text" class="liangext r3" name="fuliaoValue[]" value="如:1勺"
+                     onfocus="if(this.value==&#39;如:1勺&#39;) {this.value=&#39;&#39;; $(this).addClass(&#39;fcbm&#39;); }"
+                     onblur="if(!this.value) {this.value=&#39;如:1勺&#39;;$(this).removeClass(&#39;fcbm&#39;);}"></span>
+                     <a href="javascript:void(0);" tabindex="-1" class="wrng"></a>
+                 </div>
+                 <div class="mct clearfix mbs">
+                    <span class="liao"><input type="text" class="liaoext r3 fcbm" name="fuliao[]" value=""></span>
+                    <span class="liang"><input type="text" class="liangext r3 fcbm" name="fuliaoValue[]"
+                     value=""></span>
+                     <a href="javascript:void(0);" tabindex="-1" class="wrng"></a>
+                 </div>
+                 <div class="adlan">
+                    <a href="javascript:void(0);" tabindex="-1" id="fuliao" style="display:block;">增加一栏</a>
+                </div>
+            </div>
+        </div>
+<div class="ltip pvl clearfix">
+    <h3>小贴士</h3>
+    <textarea name="cooktips" class="tiptext r3"
+    onfocus="if(this.value==&#39;(选填)&#39;) {this.value=&#39;&#39;; $(this).addClass(&#39;fcbm&#39;); }"
+    onblur="if(!this.value) {this.value=&#39;(选填)&#39;;$(this).removeClass(&#39;fcbm&#39;);}" id="tag">(选填)</textarea>
+</div>
+<div class="tag">
+    <h3>添加标签（多个标签用空格隔开）</h3>
+    <div id="cooktagInput" class="tipu r3 mb20 clearfix">
+        <span class="intput"><input type="text" id="taginfo" name="taginfo" info="upfood" class="intag fcbm"
+            value=""></span>
+        </div>
+        <div class="hotap mb15 clearfix">
+            <span>常用标签:</span>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">云南菜</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">锅贴</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">贫血</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">下奶</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">骨质疏松</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">便秘</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">汉堡</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">经期</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">肉夹馍</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">排毒养颜</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">凉面</a>
+            <a href="javascript:void(0)" class="cooktag" info="upfood">花卷</a>
+        </div>
+        <!--视频-->
+        <div id="jiaoyanma_div" style="margin-left:-70px;margin-top:10px"></div>
+        <div class="mtm ff0" id="checkword"></div>
+    </div>
+</div>
+
+ <div class="fbcaip mb50">
+    <button id="uploadCaipuInfo1" type="button" class="btnfb fwb">发布</button>
+</div>
+{/if}
+
+  
+
+
+
+
+
+<script>
+    $(function () {
+       
+          $('#uploadCaipuInfo1').click(function () {
+             var data = $("#zhuf input").length;
+             var data1 = $("#ful input").length;
+             
+              var result = [];
+              var result1 = [];
+              var result2 = [];
+              $("#zhuf input").each(function (i) {
+                  result.push($(this).val());
+              });
+              $("#ful input").each(function (i) {
+                  result1.push($(this).val());
+              });
+              $("#cooktagInput input").each(function (i) {
+                  result2.push($(this).val());
+              });
+            $.post(
+                'doMetails',
+                {
+                    zhuliao: result,
+                    fuliao: result1,
+                    tagValue: $("#tag").val(),
+                    taginfo: result2
+                },
+                function(data){
+                    if(data.status){
+
+                      $(function () {
+                                    setTimeout( function(){
+                                    location.href = '__SITE__/index/cook/publish';
+                                }, 1000);
+                                }) 
+                 }else{
+                             // console.log(data.msg);
+                            // alert(data.msg);
+                        }
+                    }, 'json');
+        });
+       
+
+    });
+    </script>
+    <!-- <div class="ajifenshow"><a class="yshzhbg" href="/mall?f=jf" target="_blank"></a></div> -->
+    <script src="__STATIC__/js/saved_resource(2).js"></script>
+    <script src="__STATIC__/js/c.php" language="JavaScript" charset="utf8"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-60338497-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script>
+        (function () {
+            var bp = document.createElement('script');
+            bp.src = '//push.zhanzhang.baidu.com/push.js';
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+    <iframe name="iframe_au0" style="display: none;" src="saved_resource.html"></iframe>
+    <iframe name="iframe_au1" style="display: none;" src="saved_resource(3).html"></iframe>
+    <iframe name="iframe_au2" style="display: none;" src="saved_resource(4).html"></iframe>
+    <iframe name="iframe_au3" style="display: none;" src="saved_resource(5).html"></iframe>
+    <div style="position: static; width: 0px; height: 0px; border: none; padding: 0px; margin: 0px;">
+        <div id="trans-tooltip">
+            <div id="tip-left-top"
+            style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-left-top.png&quot;);"></div>
+            <div id="tip-top"
+            style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-top.png&quot;) repeat-x;"></div>
+            <div id="tip-right-top"
+            style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-right-top.png&quot;);"></div>
+            <div id="tip-right"
+            style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-right.png&quot;) repeat-y;"></div>
+            <div id="tip-right-bottom"
+            style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-right-bottom.png&quot;);"></div>
+            <div id="tip-bottom"
+            style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-bottom.png&quot;) repeat-x;"></div>
+            <div id="tip-left-bottom"
+            style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-left-bottom.png&quot;);"></div>
+            <div id="tip-left"
+            style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-left.png&quot;);"></div>
+            <div id="trans-content"></div>
+        </div>
+        <div id="tip-arrow-bottom"
+        style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-bottom.png&quot;);"></div>
+        <div id="tip-arrow-top"
+        style="background: url(&quot;chrome-extension://ikkbfngojljohpekonpldkamedehakni/imgs/map/tip-arrow-top.png&quot;);"></div>
+    </div>
+</body>
+</html>

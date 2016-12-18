@@ -1,0 +1,69 @@
+
+</head>
+<body>
+<a class="dg-passport" id="login"></a>
+<input id="getjs" value="0" type="hidden">
+<input name="hid_gourl" value="/mall" type="hidden">
+<!--[if lte IE 6]>
+<div class="ietishi relative" id="ie6-warning">
+    你的浏览器版本过低，升级后体验效果更佳
+    <a href="###" class="iclse" onclick="document.getElementById('ie6-warning').style.display='none';return false;"></a>
+</div>
+<![endif]-->
+<script type="text/javascript">
+    var islogin = getCookies('user_id');
+    if (islogin == '') {
+        var comformvalue = getCookies('comfrom');
+        var is_showloginheads = getCookies('is_showlonginlead');
+        if (is_showloginheads != 'OK') {
+            if (comformvalue == 1) {
+                setCookie('showNums', 0);
+                showloginhead('sina');
+            }
+            else if (comformvalue == 2) {
+                setCookie('showNums', 0);
+                showloginhead('qq');
+            }
+        }
+    }
+    function overshow() {
+        $("#header_usermenu").show()
+    }
+    function outshow() {
+        $("#header_usermenu").hide()
+    }
+</script>
+<div class="ysysy clearfix">
+   
+    <div class="yshcp clearfix">
+    {foreach $info as $val}
+        <div class="ysktr">
+            <div class="yshimg">
+                <a href="__SITE__/index/goods/buygoods/id/{$val.id}" target="_blank">
+                    {foreach $pic as $v}
+                    {if $val.id == $v.goods_id}
+                    <img alt="{$val.goods_name}" src="{$v.goods_path}">
+                    {/if}
+                    {/foreach}
+                    
+                </a>
+            </div>
+            <div class="yshnr">
+                <a href="__SITE__/index/goods/buygoods/id/{$val.id}" target="_blank" title="{$val.goods_name}">
+                    <h3>{$val.goods_name}</h3>
+                </a>
+                <div class="jg">
+                    <span>￥{$val.new_price}</span>
+                    <del>¥{$val.old_price}</del>
+                </div>
+            </div>
+            <div class="yshou">月售 {$val.amount} 件</div>
+            {if $val.freight == '卖家包邮'}
+            <div class="baoy">{$val.freight}</div>
+            {else}
+            <div class="baoy">运费:¥{$val.freight}</div>
+            {/if}
+        </div>
+    {/foreach}   
+    </div>
+    
